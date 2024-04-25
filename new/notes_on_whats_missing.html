@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>open_source_bounty_exorde</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><ol>
+<li><strong>Functionality and data structures not present in the new files:</strong></li>
+</ol>
+<p>The main functionality and data structures that are not present in the new files are:</p>
+<ul>
+<li>The global state management functions like <code>updateItemCount()</code>, <code>getBatchCountForBatch()</code>, <code>getExtrasForQualityBatch()</code>, <code>getSubmissionsForBatch()</code>, <code>getActiveWorkersCount()</code>, <code>getAvailableWorkersCount()</code>, <code>getBusyWorkersCount()</code>, <code>getLastDataId()</code>, <code>getLastBatchId()</code>, <code>getLastCheckedBatchId()</code>, <code>getLastAllocatedBatchId()</code>, <code>getBatchByID()</code>, <code>getAllWorkersBetweenIndex()</code>, <code>getAllWorkersLength()</code>, <code>getDataByID()</code>, <code>getTxCounter()</code>, and <code>getItemCounter()</code>.</li>
+<li>The data structures related to the global state, such as <code>Vote</code>, <code>WorkerState</code>, <code>TimeframeCounter</code>, <code>AllWorkersList</code>, <code>availableWorkers</code>, <code>busyWorkers</code>, <code>toUnregisterWorkers</code>, <code>SystemStakedTokenBalance</code>, <code>AcceptedBatchsCounter</code>, <code>RejectedBatchsCounter</code>, <code>NotCommitedCounter</code>, and <code>NotRevealedCounter</code>.</li>
+</ul>
+<ol start="2">
+<li><strong>Fundamental issues with the refactor:</strong></li>
+</ol>
+<p>The refactor seems to be on the right track, as it separates the concerns of worker management, data validation, and commit/reveal management into separate contracts. However, there are a few potential issues:</p>
+<ul>
+<li>The <code>Validation</code> contract seems to be responsible for both work allocation and data validation, which could be further separated into two distinct contracts.</li>
+<li>The <code>QualityCommitRevealManager</code> contract seems to be responsible for both quality and relevance checks, which could be further separated into two distinct contracts.</li>
+<li>The <code>WorkerManager</code> contract seems to be responsible for both worker registration/unregistration and worker allocation, which could be further separated into two distinct contracts.</li>
+</ul>
+<ol start="3">
+<li><strong>Missing getters/setters:</strong></li>
+</ol>
+<p>The potential missing getters/setters are:</p>
+<ul>
+<li>
+<p>The <code>Validation</code> contract could use some getters/setters for the following data structures:</p>
+<ul>
+<li><code>ProcessedBatch</code></li>
+<li><code>ProcessBatchInfo</code></li>
+<li><code>RandomQualitySubsets</code></li>
+<li><code>ItemFlowManager</code></li>
+</ul>
+</li>
+<li>
+<p>The <code>QualityCommitRevealManager</code> contract could use some getters/setters for the following data structures:</p>
+<ul>
+<li><code>UserQualityVoteSubmission</code></li>
+<li><code>UserRelevanceVoteSubmission</code></li>
+<li><code>QualityHashes</code></li>
+<li><code>QualitySubmissions</code></li>
+<li><code>UserEncryptedBaseCounts</code></li>
+<li><code>UserEncryptedDuplicates</code></li>
+<li><code>UserEncryptedBountiesCounts</code></li>
+<li><code>UserClearCounts</code></li>
+<li><code>UserClearDuplicatesIndices</code></li>
+<li><code>UserClearBountiesCounts</code></li>
+<li><code>WorkersPerQualityBatch</code></li>
+<li><code>WorkersPerRelevanceBatch</code></li>
+<li><code>QualityBatchCommitedVoteCount</code></li>
+<li><code>QualityBatchRevealedVoteCount</code></li>
+<li><code>RelevanceBatchCommitedVoteCount</code></li>
+<li><code>RelevanceBatchRevealedVoteCount</code></li>
+<li><code>ProcessBatchInfo</code></li>
+<li><code>InputFilesMap</code></li>
+</ul>
+</li>
+<li>
+<p>The <code>WorkerManager</code> contract could use some getters/setters for the following data structures:</p>
+<ul>
+<li><code>WorkersStatus</code></li>
+<li><code>AllWorkersList</code></li>
+</ul>
+</li>
+</ul>
+<p>By adding these getters and setters, you can ensure that the contracts can properly interact with each other and maintain the necessary data structures.<strong>Step-by-step plan for the refactoring:</strong></p>
+<ol>
+<li>
+<p><strong>Separate the Validation contract:</strong></p>
+<ul>
+<li>Create a new contract called <code>DataAllocation</code> that is responsible for work allocation, including selecting workers, updating worker states, and assigning work.</li>
+<li>Move the <code>AllocateWork()</code> function and related helper functions from the <code>Validation</code> contract to the <code>DataAllocation</code> contract.</li>
+<li>Update the <code>Validation</code> contract to only handle data validation, including the <code>ValidateBatch()</code> function and related helper functions.</li>
+<li>Ensure that the <code>Validation</code> contract can properly interact with the <code>DataAllocation</code> contract by adding the necessary getters and setters.</li>
+</ul>
+</li>
+<li>
+<p><strong>Separate the QualityCommitRevealManager contract:</strong></p>
+<ul>
+<li>Create a new contract called <code>QualityManager</code> that is responsible for handling the quality-related commit and reveal processes.</li>
+<li>Move the quality-related functions, such as <code>commitQualityCheck()</code> and <code>revealQualityCheck()</code>, from the <code>QualityCommitRevealManager</code> contract to the <code>QualityManager</code> contract.</li>
+<li>Create a new contract called <code>RelevanceManager</code> that is responsible for handling the relevance-related commit and reveal processes.</li>
+<li>Move the relevance-related functions, such as <code>commitRelevanceCheck()</code> and <code>revealRelevanceCheck()</code>, from the <code>QualityCommitRevealManager</code> contract to the <code>RelevanceManager</code> contract.</li>
+<li>Ensure that the <code>Validation</code> contract can properly interact with the <code>QualityManager</code> and <code>RelevanceManager</code> contracts by adding the necessary getters and setters.</li>
+</ul>
+</li>
+<li>
+<p><strong>Separate the WorkerManager contract:</strong></p>
+<ul>
+<li>Create a new contract called <code>WorkerRegistration</code> that is responsible for worker registration and unregistration, including the <code>RegisterWorker()</code>, <code>UnregisterWorker()</code>, <code>canWorkerRegister()</code>, and <code>canWorkerUnregister()</code> functions.</li>
+<li>Create a new contract called <code>WorkerAllocation</code> that is responsible for worker allocation, including the <code>SwapFromAvailableToBusyWorkers()</code>, <code>SwapFromBusyToAvailableWorkers()</code>, and <code>RemoveFromAvailableAndBusyWorkers()</code> functions.</li>
+<li>Ensure that the <code>DataAllocation</code>, <code>QualityManager</code>, and <code>RelevanceManager</code> contracts can properly interact with the <code>WorkerRegistration</code> and <code>WorkerAllocation</code> contracts by adding the necessary getters and setters.</li>
+</ul>
+</li>
+<li>
+<p><strong>Implement the missing global state management functionality:</strong></p>
+<ul>
+<li>Create a new contract called <code>GlobalStateManager</code> that is responsible for managing the global state of the system, including the functions like <code>updateItemCount()</code>, <code>getBatchCountForBatch()</code>, <code>getExtrasForQualityBatch()</code>, <code>getSubmissionsForBatch()</code>, <code>getActiveWorkersCount()</code>, <code>getAvailableWorkersCount()</code>, <code>getBusyWorkersCount()</code>, <code>getLastDataId()</code>, <code>getLastBatchId()</code>, <code>getLastCheckedBatchId()</code>, <code>getLastAllocatedBatchId()</code>, <code>getBatchByID()</code>, <code>getAllWorkersBetweenIndex()</code>, <code>getAllWorkersLength()</code>, <code>getDataByID()</code>, <code>getTxCounter()</code>, and <code>getItemCounter()</code>.</li>
+<li>Ensure that the other contracts, such as <code>Validation</code>, <code>DataAllocation</code>, <code>QualityManager</code>, <code>RelevanceManager</code>, <code>WorkerRegistration</code>, and <code>WorkerAllocation</code>, can properly interact with the <code>GlobalStateManager</code> contract by adding the necessary getters and setters.</li>
+</ul>
+</li>
+<li>
+<p><strong>Implement the missing data structures:</strong></p>
+<ul>
+<li>Ensure that the <code>GlobalStateManager</code> contract contains the necessary data structures, such as <code>Vote</code>, <code>WorkerState</code>, <code>TimeframeCounter</code>, <code>AllWorkersList</code>, <code>availableWorkers</code>, <code>busyWorkers</code>, <code>toUnregisterWorkers</code>, <code>SystemStakedTokenBalance</code>, <code>AcceptedBatchsCounter</code>, <code>RejectedBatchsCounter</code>, <code>NotCommitedCounter</code>, and <code>NotRevealedCounter</code>.</li>
+<li>Ensure that the other contracts, such as <code>Validation</code>, <code>DataAllocation</code>, <code>QualityManager</code>, <code>RelevanceManager</code>, <code>WorkerRegistration</code>, and <code>WorkerAllocation</code>, can properly interact with the data structures in the <code>GlobalStateManager</code> contract by adding the necessary getters and setters.</li>
+</ul>
+</li>
+</ol>
+<p>By following this step-by-step plan, you should be able to refactor the initial <code>DataQuality</code> contract into a more modular and maintainable system, with clear separation of concerns and proper interaction between the different contracts.</p>
+</div>
+</body>
+
+</html>
