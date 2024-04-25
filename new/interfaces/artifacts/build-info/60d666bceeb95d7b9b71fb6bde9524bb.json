@@ -1,0 +1,4636 @@
+{
+	"id": "60d666bceeb95d7b9b71fb6bde9524bb",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.20",
+	"solcLongVersion": "0.8.20+commit.a1b79de6",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"worksystems/interfaces/IParametersManager.sol": {
+				"content": "// SPDX-License-Identifier: GPL-3.0\npragma solidity 0.8.20;\n\ninterface IParametersManager {\n    // -------------- GETTERS : GENERAL --------------------\n    function getMaxTotalWorkers() external view returns(uint256);\n\n    function getVoteQuorum() external view returns(uint256);\n\n    function get_MAX_UPDATE_ITERATIONS() external view returns(uint256);\n\n    function get_MAX_CONTRACT_STORED_BATCHES() external view returns(uint256);\n\n    function get_MAX_SUCCEEDING_NOVOTES() external view returns(uint256);\n\n    function get_NOVOTE_REGISTRATION_WAIT_DURATION() external view returns(uint256);\n\n    // -------------- GETTERS : ADDRESSES --------------------\n    function getStakeManager() external view returns(address);\n\n    function getRepManager() external view returns(address);\n\n    function getAddressManager() external view returns(address);\n\n    function getReputationSystem() external view returns(address);\n\n    function getRewardManager() external view returns(address);\n\n    function getArchivingSystem() external view returns(address);\n\n    function getSpottingSystem() external view returns(address);\n\n    function getQualitySystem() external view returns(address);\n\n    function getIndexingSystem() external view returns(address);\n\n    function getsFuelSystem() external view returns(address);\n\n    function getExordeToken() external view returns(address);\n\n    // -------------- GETTERS : SPOTTING --------------------\n    function get_SPOT_DATA_BATCH_SIZE() external view returns(uint256);\n\n    function get_SPOT_MIN_STAKE() external view returns(uint256);\n\n    function get_SPOT_MIN_CONSENSUS_WORKER_COUNT() external view returns(uint256);\n\n    function get_SPOT_MAX_CONSENSUS_WORKER_COUNT() external view returns(uint256);\n\n    function get_SPOT_COMMIT_ROUND_DURATION() external view returns(uint256);\n\n    function get_SPOT_REVEAL_ROUND_DURATION() external view returns(uint256);\n\n    function get_SPOT_MIN_REP_SpotData() external view returns(uint256);\n\n    function get_SPOT_MIN_REWARD_SpotData() external view returns(uint256);\n\n    function get_SPOT_MIN_REP_DataValidation() external view returns(uint256);\n\n    function get_SPOT_MIN_REWARD_DataValidation() external view returns(uint256);\n\n    function get_SPOT_INTER_ALLOCATION_DURATION() external view returns(uint256);\n\n    function get_SPOT_TOGGLE_ENABLED() external view returns(bool);\n\n    function get_SPOT_TIMEFRAME_DURATION() external view returns(uint256);\n\n    function get_SPOT_GLOBAL_MAX_SPOT_PER_PERIOD() external view returns(uint256);\n\n    function get_SPOT_MAX_SPOT_PER_USER_PER_PERIOD() external view returns(uint256);\n\n    function get_SPOT_NB_TIMEFRAMES() external view returns(uint256);\n\n    // -------------- GETTERS : QUALITY --------------------\n    function get_QUALITY_DATA_BATCH_SIZE() external view returns(uint256);\n\n    function get_QUALITY_MIN_STAKE() external view returns(uint256);\n\n    function get_QUALITY_MIN_CONSENSUS_WORKER_COUNT() external view returns(uint256);\n\n    function get_QUALITY_MAX_CONSENSUS_WORKER_COUNT() external view returns(uint256);\n\n    function get_QUALITY_COMMIT_ROUND_DURATION() external view returns(uint256);\n\n    function get_QUALITY_REVEAL_ROUND_DURATION() external view returns(uint256);\n\n    function get_QUALITY_MIN_REP_SpotData() external view returns(uint256);\n\n    function get_QUALITY_MIN_REWARD_SpotData() external view returns(uint256);\n\n    function get_QUALITY_MIN_REP_DataValidation() external view returns(uint256);\n\n    function get_QUALITY_MIN_REWARD_DataValidation() external view returns(uint256);\n\n    function get_QUALITY_INTER_ALLOCATION_DURATION() external view returns(uint256);\n\n    function get_QUALITY_TOGGLE_ENABLED() external view returns(bool);\n\n    function get_QUALITY_TIMEFRAME_DURATION() external view returns(uint256);\n\n    function get_QUALITY_GLOBAL_MAX_QUALITY_PER_PERIOD() external view returns(uint256);\n\n    function get_QUALITY_MAX_QUALITY_PER_USER_PER_PERIOD() external view returns(uint256);\n\n    function get_QUALITY_NB_TIMEFRAMES() external view returns(uint256);\n\n    // -------------- GETTERS : ARCHIVE --------------------\n    function get_ARCHIVING_DATA_BATCH_SIZE() external view returns(uint256);\n\n    function get_ARCHIVING_MIN_STAKE() external view returns(uint256);\n\n    function get_ARCHIVING_MIN_CONSENSUS_WORKER_COUNT() external view returns(uint256);\n\n    function get_ARCHIVING_MAX_CONSENSUS_WORKER_COUNT() external view returns(uint256);\n\n    function get_ARCHIVING_COMMIT_ROUND_DURATION() external view returns(uint256);\n\n    function get_ARCHIVING_REVEAL_ROUND_DURATION() external view returns(uint256);\n\n    function get_ARCHIVING_MIN_REP_SpotData() external view returns(uint256);\n\n    function get_ARCHIVING_MIN_REWARD_SpotData() external view returns(uint256);\n\n    function get_ARCHIVING_MIN_REP_DataValidation() external view returns(uint256);\n\n    function get_ARCHIVING_MIN_REWARD_DataValidation() external view returns(uint256);\n\n    function get_ARCHIVING_INTER_ALLOCATION_DURATION() external view returns(uint256);\n\n    function get_ARCHIVING_TOGGLE_ENABLED() external view returns(bool);\n\n    function get_ARCHIVING_TIMEFRAME_DURATION() external view returns(uint256);\n\n    function get_ARCHIVING_GLOBAL_MAX_ARCHIVING_PER_PERIOD() external view returns(uint256);\n\n    function get_ARCHIVING_MAX_ARCHIVING_PER_USER_PER_PERIOD() external view returns(uint256);\n\n    function get_ARCHIVING_NB_TIMEFRAMES() external view returns(uint256);\n\n}\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"worksystems/interfaces/IParametersManager.sol": {
+				"IParametersManager": {
+					"abi": [
+						{
+							"inputs": [],
+							"name": "getAddressManager",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getArchivingSystem",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getExordeToken",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getIndexingSystem",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getMaxTotalWorkers",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getQualitySystem",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getRepManager",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getReputationSystem",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getRewardManager",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getSpottingSystem",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getStakeManager",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getVoteQuorum",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_COMMIT_ROUND_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_DATA_BATCH_SIZE",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_GLOBAL_MAX_ARCHIVING_PER_PERIOD",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_INTER_ALLOCATION_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_MAX_ARCHIVING_PER_USER_PER_PERIOD",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_MAX_CONSENSUS_WORKER_COUNT",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_MIN_CONSENSUS_WORKER_COUNT",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_MIN_REP_DataValidation",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_MIN_REP_SpotData",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_MIN_REWARD_DataValidation",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_MIN_REWARD_SpotData",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_MIN_STAKE",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_NB_TIMEFRAMES",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_REVEAL_ROUND_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_TIMEFRAME_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_ARCHIVING_TOGGLE_ENABLED",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_MAX_CONTRACT_STORED_BATCHES",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_MAX_SUCCEEDING_NOVOTES",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_MAX_UPDATE_ITERATIONS",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_NOVOTE_REGISTRATION_WAIT_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_COMMIT_ROUND_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_DATA_BATCH_SIZE",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_GLOBAL_MAX_QUALITY_PER_PERIOD",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_INTER_ALLOCATION_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_MAX_CONSENSUS_WORKER_COUNT",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_MAX_QUALITY_PER_USER_PER_PERIOD",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_MIN_CONSENSUS_WORKER_COUNT",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_MIN_REP_DataValidation",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_MIN_REP_SpotData",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_MIN_REWARD_DataValidation",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_MIN_REWARD_SpotData",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_MIN_STAKE",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_NB_TIMEFRAMES",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_REVEAL_ROUND_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_TIMEFRAME_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_QUALITY_TOGGLE_ENABLED",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_COMMIT_ROUND_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_DATA_BATCH_SIZE",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_GLOBAL_MAX_SPOT_PER_PERIOD",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_INTER_ALLOCATION_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_MAX_CONSENSUS_WORKER_COUNT",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_MAX_SPOT_PER_USER_PER_PERIOD",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_MIN_CONSENSUS_WORKER_COUNT",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_MIN_REP_DataValidation",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_MIN_REP_SpotData",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_MIN_REWARD_DataValidation",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_MIN_REWARD_SpotData",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_MIN_STAKE",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_NB_TIMEFRAMES",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_REVEAL_ROUND_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_TIMEFRAME_DURATION",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "get_SPOT_TOGGLE_ENABLED",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getsFuelSystem",
+							"outputs": [
+								{
+									"internalType": "address",
+									"name": "",
+									"type": "address"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"getAddressManager()": "5492f302",
+							"getArchivingSystem()": "463444b7",
+							"getExordeToken()": "2e2f93f3",
+							"getIndexingSystem()": "7a0ec25b",
+							"getMaxTotalWorkers()": "98a54e2b",
+							"getQualitySystem()": "f822ab60",
+							"getRepManager()": "0855d151",
+							"getReputationSystem()": "e992dca7",
+							"getRewardManager()": "04e76c8f",
+							"getSpottingSystem()": "b45d9d8d",
+							"getStakeManager()": "ca64f9e7",
+							"getVoteQuorum()": "ea19733c",
+							"get_ARCHIVING_COMMIT_ROUND_DURATION()": "9279e9d4",
+							"get_ARCHIVING_DATA_BATCH_SIZE()": "0363a1bf",
+							"get_ARCHIVING_GLOBAL_MAX_ARCHIVING_PER_PERIOD()": "6c06a895",
+							"get_ARCHIVING_INTER_ALLOCATION_DURATION()": "45515de8",
+							"get_ARCHIVING_MAX_ARCHIVING_PER_USER_PER_PERIOD()": "ca6da7f0",
+							"get_ARCHIVING_MAX_CONSENSUS_WORKER_COUNT()": "3968ec84",
+							"get_ARCHIVING_MIN_CONSENSUS_WORKER_COUNT()": "995adbdd",
+							"get_ARCHIVING_MIN_REP_DataValidation()": "49b46787",
+							"get_ARCHIVING_MIN_REP_SpotData()": "64aebf8a",
+							"get_ARCHIVING_MIN_REWARD_DataValidation()": "893b2a76",
+							"get_ARCHIVING_MIN_REWARD_SpotData()": "648241f2",
+							"get_ARCHIVING_MIN_STAKE()": "b1562f67",
+							"get_ARCHIVING_NB_TIMEFRAMES()": "e55b9005",
+							"get_ARCHIVING_REVEAL_ROUND_DURATION()": "29e3dd1f",
+							"get_ARCHIVING_TIMEFRAME_DURATION()": "37808f77",
+							"get_ARCHIVING_TOGGLE_ENABLED()": "d495a822",
+							"get_MAX_CONTRACT_STORED_BATCHES()": "e3115d3c",
+							"get_MAX_SUCCEEDING_NOVOTES()": "9fb491f6",
+							"get_MAX_UPDATE_ITERATIONS()": "7d630cb0",
+							"get_NOVOTE_REGISTRATION_WAIT_DURATION()": "0f1f0ffe",
+							"get_QUALITY_COMMIT_ROUND_DURATION()": "cc282ee8",
+							"get_QUALITY_DATA_BATCH_SIZE()": "a156491b",
+							"get_QUALITY_GLOBAL_MAX_QUALITY_PER_PERIOD()": "7202359d",
+							"get_QUALITY_INTER_ALLOCATION_DURATION()": "ec71e2bb",
+							"get_QUALITY_MAX_CONSENSUS_WORKER_COUNT()": "1156a122",
+							"get_QUALITY_MAX_QUALITY_PER_USER_PER_PERIOD()": "9368c751",
+							"get_QUALITY_MIN_CONSENSUS_WORKER_COUNT()": "cc11d670",
+							"get_QUALITY_MIN_REP_DataValidation()": "286a3cbc",
+							"get_QUALITY_MIN_REP_SpotData()": "a393b65f",
+							"get_QUALITY_MIN_REWARD_DataValidation()": "5678c9b0",
+							"get_QUALITY_MIN_REWARD_SpotData()": "49742593",
+							"get_QUALITY_MIN_STAKE()": "e8b0c69a",
+							"get_QUALITY_NB_TIMEFRAMES()": "f5ca4098",
+							"get_QUALITY_REVEAL_ROUND_DURATION()": "d52472bf",
+							"get_QUALITY_TIMEFRAME_DURATION()": "d9296ee8",
+							"get_QUALITY_TOGGLE_ENABLED()": "d891c6f2",
+							"get_SPOT_COMMIT_ROUND_DURATION()": "3692616a",
+							"get_SPOT_DATA_BATCH_SIZE()": "9d1f2ada",
+							"get_SPOT_GLOBAL_MAX_SPOT_PER_PERIOD()": "b38e885e",
+							"get_SPOT_INTER_ALLOCATION_DURATION()": "c4a306f8",
+							"get_SPOT_MAX_CONSENSUS_WORKER_COUNT()": "dfeceed7",
+							"get_SPOT_MAX_SPOT_PER_USER_PER_PERIOD()": "be250988",
+							"get_SPOT_MIN_CONSENSUS_WORKER_COUNT()": "bd40ef4c",
+							"get_SPOT_MIN_REP_DataValidation()": "0b08bfd9",
+							"get_SPOT_MIN_REP_SpotData()": "abb10b9b",
+							"get_SPOT_MIN_REWARD_DataValidation()": "f80de0a0",
+							"get_SPOT_MIN_REWARD_SpotData()": "30c0bb79",
+							"get_SPOT_MIN_STAKE()": "ff622dda",
+							"get_SPOT_NB_TIMEFRAMES()": "e66d543a",
+							"get_SPOT_REVEAL_ROUND_DURATION()": "72e54030",
+							"get_SPOT_TIMEFRAME_DURATION()": "0f78cc76",
+							"get_SPOT_TOGGLE_ENABLED()": "4e87c5a8",
+							"getsFuelSystem()": "557c1abe"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getAddressManager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getArchivingSystem\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getExordeToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getIndexingSystem\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getMaxTotalWorkers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getQualitySystem\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRepManager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getReputationSystem\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRewardManager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getSpottingSystem\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getStakeManager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getVoteQuorum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_COMMIT_ROUND_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_DATA_BATCH_SIZE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_GLOBAL_MAX_ARCHIVING_PER_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_INTER_ALLOCATION_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_MAX_ARCHIVING_PER_USER_PER_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_MAX_CONSENSUS_WORKER_COUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_MIN_CONSENSUS_WORKER_COUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_MIN_REP_DataValidation\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_MIN_REP_SpotData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_MIN_REWARD_DataValidation\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_MIN_REWARD_SpotData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_MIN_STAKE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_NB_TIMEFRAMES\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_REVEAL_ROUND_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_TIMEFRAME_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_ARCHIVING_TOGGLE_ENABLED\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_MAX_CONTRACT_STORED_BATCHES\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_MAX_SUCCEEDING_NOVOTES\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_MAX_UPDATE_ITERATIONS\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_NOVOTE_REGISTRATION_WAIT_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_COMMIT_ROUND_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_DATA_BATCH_SIZE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_GLOBAL_MAX_QUALITY_PER_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_INTER_ALLOCATION_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_MAX_CONSENSUS_WORKER_COUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_MAX_QUALITY_PER_USER_PER_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_MIN_CONSENSUS_WORKER_COUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_MIN_REP_DataValidation\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_MIN_REP_SpotData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_MIN_REWARD_DataValidation\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_MIN_REWARD_SpotData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_MIN_STAKE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_NB_TIMEFRAMES\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_REVEAL_ROUND_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_TIMEFRAME_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_QUALITY_TOGGLE_ENABLED\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_COMMIT_ROUND_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_DATA_BATCH_SIZE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_GLOBAL_MAX_SPOT_PER_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_INTER_ALLOCATION_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_MAX_CONSENSUS_WORKER_COUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_MAX_SPOT_PER_USER_PER_PERIOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_MIN_CONSENSUS_WORKER_COUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_MIN_REP_DataValidation\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_MIN_REP_SpotData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_MIN_REWARD_DataValidation\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_MIN_REWARD_SpotData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_MIN_STAKE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_NB_TIMEFRAMES\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_REVEAL_ROUND_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_TIMEFRAME_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_SPOT_TOGGLE_ENABLED\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getsFuelSystem\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"worksystems/interfaces/IParametersManager.sol\":\"IParametersManager\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"worksystems/interfaces/IParametersManager.sol\":{\"keccak256\":\"0xa5f6599b26e6798f847764991d560ce95b76e8e18fa1380e49cc036f96108534\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://26131509b6400689051407fcbd3c947018e74e6e7ed53ccd175e4b0350ed1597\",\"dweb:/ipfs/QmTD4GTc2uQ3eobdsvMUiALznHg8umdKQJtvw8pzLpLaBH\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"worksystems/interfaces/IParametersManager.sol": {
+				"ast": {
+					"absolutePath": "worksystems/interfaces/IParametersManager.sol",
+					"exportedSymbols": {
+						"IParametersManager": [
+							327
+						]
+					},
+					"id": 328,
+					"license": "GPL-3.0",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"0.8",
+								".20"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "36:23:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IParametersManager",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": false,
+							"id": 327,
+							"linearizedBaseContracts": [
+								327
+							],
+							"name": "IParametersManager",
+							"nameLocation": "71:18:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"functionSelector": "98a54e2b",
+									"id": 6,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getMaxTotalWorkers",
+									"nameLocation": "166:18:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 2,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "184:2:0"
+									},
+									"returnParameters": {
+										"id": 5,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 4,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 6,
+												"src": "209:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 3,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "209:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "208:9:0"
+									},
+									"scope": 327,
+									"src": "157:61:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "ea19733c",
+									"id": 11,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getVoteQuorum",
+									"nameLocation": "233:13:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 7,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "246:2:0"
+									},
+									"returnParameters": {
+										"id": 10,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 9,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 11,
+												"src": "271:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 8,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "271:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "270:9:0"
+									},
+									"scope": 327,
+									"src": "224:56:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "7d630cb0",
+									"id": 16,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_MAX_UPDATE_ITERATIONS",
+									"nameLocation": "295:25:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 12,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "320:2:0"
+									},
+									"returnParameters": {
+										"id": 15,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 14,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 16,
+												"src": "345:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 13,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "345:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "344:9:0"
+									},
+									"scope": 327,
+									"src": "286:68:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "e3115d3c",
+									"id": 21,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_MAX_CONTRACT_STORED_BATCHES",
+									"nameLocation": "369:31:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 17,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "400:2:0"
+									},
+									"returnParameters": {
+										"id": 20,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 19,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 21,
+												"src": "425:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 18,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "425:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "424:9:0"
+									},
+									"scope": 327,
+									"src": "360:74:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "9fb491f6",
+									"id": 26,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_MAX_SUCCEEDING_NOVOTES",
+									"nameLocation": "449:26:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 22,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "475:2:0"
+									},
+									"returnParameters": {
+										"id": 25,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 24,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 26,
+												"src": "500:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 23,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "500:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "499:9:0"
+									},
+									"scope": 327,
+									"src": "440:69:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "0f1f0ffe",
+									"id": 31,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_NOVOTE_REGISTRATION_WAIT_DURATION",
+									"nameLocation": "524:37:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 27,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "561:2:0"
+									},
+									"returnParameters": {
+										"id": 30,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 29,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 31,
+												"src": "586:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 28,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "586:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "585:9:0"
+									},
+									"scope": 327,
+									"src": "515:80:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "ca64f9e7",
+									"id": 36,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getStakeManager",
+									"nameLocation": "673:15:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 32,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "688:2:0"
+									},
+									"returnParameters": {
+										"id": 35,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 34,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 36,
+												"src": "713:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 33,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "713:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "712:9:0"
+									},
+									"scope": 327,
+									"src": "664:58:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "0855d151",
+									"id": 41,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getRepManager",
+									"nameLocation": "737:13:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 37,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "750:2:0"
+									},
+									"returnParameters": {
+										"id": 40,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 39,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 41,
+												"src": "775:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 38,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "775:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "774:9:0"
+									},
+									"scope": 327,
+									"src": "728:56:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "5492f302",
+									"id": 46,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getAddressManager",
+									"nameLocation": "799:17:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 42,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "816:2:0"
+									},
+									"returnParameters": {
+										"id": 45,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 44,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 46,
+												"src": "841:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 43,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "841:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "840:9:0"
+									},
+									"scope": 327,
+									"src": "790:60:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "e992dca7",
+									"id": 51,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getReputationSystem",
+									"nameLocation": "865:19:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 47,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "884:2:0"
+									},
+									"returnParameters": {
+										"id": 50,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 49,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 51,
+												"src": "909:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 48,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "909:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "908:9:0"
+									},
+									"scope": 327,
+									"src": "856:62:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "04e76c8f",
+									"id": 56,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getRewardManager",
+									"nameLocation": "933:16:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 52,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "949:2:0"
+									},
+									"returnParameters": {
+										"id": 55,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 54,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 56,
+												"src": "974:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 53,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "974:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "973:9:0"
+									},
+									"scope": 327,
+									"src": "924:59:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "463444b7",
+									"id": 61,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getArchivingSystem",
+									"nameLocation": "998:18:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 57,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1016:2:0"
+									},
+									"returnParameters": {
+										"id": 60,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 59,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 61,
+												"src": "1041:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 58,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1041:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1040:9:0"
+									},
+									"scope": 327,
+									"src": "989:61:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "b45d9d8d",
+									"id": 66,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getSpottingSystem",
+									"nameLocation": "1065:17:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 62,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1082:2:0"
+									},
+									"returnParameters": {
+										"id": 65,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 64,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 66,
+												"src": "1107:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 63,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1107:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1106:9:0"
+									},
+									"scope": 327,
+									"src": "1056:60:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "f822ab60",
+									"id": 71,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getQualitySystem",
+									"nameLocation": "1131:16:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 67,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1147:2:0"
+									},
+									"returnParameters": {
+										"id": 70,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 69,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 71,
+												"src": "1172:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 68,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1172:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1171:9:0"
+									},
+									"scope": 327,
+									"src": "1122:59:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "7a0ec25b",
+									"id": 76,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getIndexingSystem",
+									"nameLocation": "1196:17:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 72,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1213:2:0"
+									},
+									"returnParameters": {
+										"id": 75,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 74,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 76,
+												"src": "1238:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 73,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1238:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1237:9:0"
+									},
+									"scope": 327,
+									"src": "1187:60:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "557c1abe",
+									"id": 81,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getsFuelSystem",
+									"nameLocation": "1262:14:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 77,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1276:2:0"
+									},
+									"returnParameters": {
+										"id": 80,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 79,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 81,
+												"src": "1301:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 78,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1301:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1300:9:0"
+									},
+									"scope": 327,
+									"src": "1253:57:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "2e2f93f3",
+									"id": 86,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getExordeToken",
+									"nameLocation": "1325:14:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 82,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1339:2:0"
+									},
+									"returnParameters": {
+										"id": 85,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 84,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 86,
+												"src": "1364:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 83,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1364:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1363:9:0"
+									},
+									"scope": 327,
+									"src": "1316:57:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "9d1f2ada",
+									"id": 91,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_DATA_BATCH_SIZE",
+									"nameLocation": "1450:24:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 87,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1474:2:0"
+									},
+									"returnParameters": {
+										"id": 90,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 89,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 91,
+												"src": "1499:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 88,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1499:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1498:9:0"
+									},
+									"scope": 327,
+									"src": "1441:67:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "ff622dda",
+									"id": 96,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_MIN_STAKE",
+									"nameLocation": "1523:18:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 92,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1541:2:0"
+									},
+									"returnParameters": {
+										"id": 95,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 94,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 96,
+												"src": "1566:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 93,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1566:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1565:9:0"
+									},
+									"scope": 327,
+									"src": "1514:61:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "bd40ef4c",
+									"id": 101,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_MIN_CONSENSUS_WORKER_COUNT",
+									"nameLocation": "1590:35:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 97,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1625:2:0"
+									},
+									"returnParameters": {
+										"id": 100,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 99,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 101,
+												"src": "1650:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 98,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1650:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1649:9:0"
+									},
+									"scope": 327,
+									"src": "1581:78:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "dfeceed7",
+									"id": 106,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_MAX_CONSENSUS_WORKER_COUNT",
+									"nameLocation": "1674:35:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 102,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1709:2:0"
+									},
+									"returnParameters": {
+										"id": 105,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 104,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 106,
+												"src": "1734:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 103,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1734:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1733:9:0"
+									},
+									"scope": 327,
+									"src": "1665:78:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "3692616a",
+									"id": 111,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_COMMIT_ROUND_DURATION",
+									"nameLocation": "1758:30:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 107,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1788:2:0"
+									},
+									"returnParameters": {
+										"id": 110,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 109,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 111,
+												"src": "1813:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 108,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1813:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1812:9:0"
+									},
+									"scope": 327,
+									"src": "1749:73:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "72e54030",
+									"id": 116,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_REVEAL_ROUND_DURATION",
+									"nameLocation": "1837:30:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 112,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1867:2:0"
+									},
+									"returnParameters": {
+										"id": 115,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 114,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 116,
+												"src": "1892:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 113,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1892:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1891:9:0"
+									},
+									"scope": 327,
+									"src": "1828:73:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "abb10b9b",
+									"id": 121,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_MIN_REP_SpotData",
+									"nameLocation": "1916:25:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 117,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1941:2:0"
+									},
+									"returnParameters": {
+										"id": 120,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 119,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 121,
+												"src": "1966:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 118,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "1966:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1965:9:0"
+									},
+									"scope": 327,
+									"src": "1907:68:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "30c0bb79",
+									"id": 126,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_MIN_REWARD_SpotData",
+									"nameLocation": "1990:28:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 122,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2018:2:0"
+									},
+									"returnParameters": {
+										"id": 125,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 124,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 126,
+												"src": "2043:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 123,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2043:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2042:9:0"
+									},
+									"scope": 327,
+									"src": "1981:71:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "0b08bfd9",
+									"id": 131,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_MIN_REP_DataValidation",
+									"nameLocation": "2067:31:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 127,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2098:2:0"
+									},
+									"returnParameters": {
+										"id": 130,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 129,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 131,
+												"src": "2123:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 128,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2123:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2122:9:0"
+									},
+									"scope": 327,
+									"src": "2058:74:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "f80de0a0",
+									"id": 136,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_MIN_REWARD_DataValidation",
+									"nameLocation": "2147:34:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 132,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2181:2:0"
+									},
+									"returnParameters": {
+										"id": 135,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 134,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 136,
+												"src": "2206:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 133,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2206:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2205:9:0"
+									},
+									"scope": 327,
+									"src": "2138:77:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "c4a306f8",
+									"id": 141,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_INTER_ALLOCATION_DURATION",
+									"nameLocation": "2230:34:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 137,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2264:2:0"
+									},
+									"returnParameters": {
+										"id": 140,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 139,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 141,
+												"src": "2289:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 138,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2289:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2288:9:0"
+									},
+									"scope": 327,
+									"src": "2221:77:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "4e87c5a8",
+									"id": 146,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_TOGGLE_ENABLED",
+									"nameLocation": "2313:23:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 142,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2336:2:0"
+									},
+									"returnParameters": {
+										"id": 145,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 144,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 146,
+												"src": "2361:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 143,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "2361:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2360:6:0"
+									},
+									"scope": 327,
+									"src": "2304:63:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "0f78cc76",
+									"id": 151,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_TIMEFRAME_DURATION",
+									"nameLocation": "2382:27:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 147,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2409:2:0"
+									},
+									"returnParameters": {
+										"id": 150,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 149,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 151,
+												"src": "2434:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 148,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2434:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2433:9:0"
+									},
+									"scope": 327,
+									"src": "2373:70:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "b38e885e",
+									"id": 156,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_GLOBAL_MAX_SPOT_PER_PERIOD",
+									"nameLocation": "2458:35:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 152,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2493:2:0"
+									},
+									"returnParameters": {
+										"id": 155,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 154,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 156,
+												"src": "2518:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 153,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2518:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2517:9:0"
+									},
+									"scope": 327,
+									"src": "2449:78:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "be250988",
+									"id": 161,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_MAX_SPOT_PER_USER_PER_PERIOD",
+									"nameLocation": "2542:37:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 157,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2579:2:0"
+									},
+									"returnParameters": {
+										"id": 160,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 159,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 161,
+												"src": "2604:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 158,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2604:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2603:9:0"
+									},
+									"scope": 327,
+									"src": "2533:80:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "e66d543a",
+									"id": 166,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_SPOT_NB_TIMEFRAMES",
+									"nameLocation": "2628:22:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 162,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2650:2:0"
+									},
+									"returnParameters": {
+										"id": 165,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 164,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 166,
+												"src": "2675:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 163,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2675:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2674:9:0"
+									},
+									"scope": 327,
+									"src": "2619:65:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "a156491b",
+									"id": 171,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_DATA_BATCH_SIZE",
+									"nameLocation": "2760:27:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 167,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2787:2:0"
+									},
+									"returnParameters": {
+										"id": 170,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 169,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 171,
+												"src": "2812:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 168,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2812:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2811:9:0"
+									},
+									"scope": 327,
+									"src": "2751:70:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "e8b0c69a",
+									"id": 176,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_MIN_STAKE",
+									"nameLocation": "2836:21:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 172,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2857:2:0"
+									},
+									"returnParameters": {
+										"id": 175,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 174,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 176,
+												"src": "2882:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 173,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2882:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2881:9:0"
+									},
+									"scope": 327,
+									"src": "2827:64:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "cc11d670",
+									"id": 181,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_MIN_CONSENSUS_WORKER_COUNT",
+									"nameLocation": "2906:38:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 177,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2944:2:0"
+									},
+									"returnParameters": {
+										"id": 180,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 179,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 181,
+												"src": "2969:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 178,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "2969:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2968:9:0"
+									},
+									"scope": 327,
+									"src": "2897:81:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "1156a122",
+									"id": 186,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_MAX_CONSENSUS_WORKER_COUNT",
+									"nameLocation": "2993:38:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 182,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3031:2:0"
+									},
+									"returnParameters": {
+										"id": 185,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 184,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 186,
+												"src": "3056:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 183,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3056:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3055:9:0"
+									},
+									"scope": 327,
+									"src": "2984:81:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "cc282ee8",
+									"id": 191,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_COMMIT_ROUND_DURATION",
+									"nameLocation": "3080:33:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 187,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3113:2:0"
+									},
+									"returnParameters": {
+										"id": 190,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 189,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 191,
+												"src": "3138:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 188,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3138:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3137:9:0"
+									},
+									"scope": 327,
+									"src": "3071:76:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "d52472bf",
+									"id": 196,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_REVEAL_ROUND_DURATION",
+									"nameLocation": "3162:33:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 192,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3195:2:0"
+									},
+									"returnParameters": {
+										"id": 195,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 194,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 196,
+												"src": "3220:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 193,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3220:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3219:9:0"
+									},
+									"scope": 327,
+									"src": "3153:76:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "a393b65f",
+									"id": 201,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_MIN_REP_SpotData",
+									"nameLocation": "3244:28:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 197,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3272:2:0"
+									},
+									"returnParameters": {
+										"id": 200,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 199,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 201,
+												"src": "3297:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 198,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3297:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3296:9:0"
+									},
+									"scope": 327,
+									"src": "3235:71:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "49742593",
+									"id": 206,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_MIN_REWARD_SpotData",
+									"nameLocation": "3321:31:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 202,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3352:2:0"
+									},
+									"returnParameters": {
+										"id": 205,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 204,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 206,
+												"src": "3377:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 203,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3377:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3376:9:0"
+									},
+									"scope": 327,
+									"src": "3312:74:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "286a3cbc",
+									"id": 211,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_MIN_REP_DataValidation",
+									"nameLocation": "3401:34:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 207,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3435:2:0"
+									},
+									"returnParameters": {
+										"id": 210,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 209,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 211,
+												"src": "3460:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 208,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3460:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3459:9:0"
+									},
+									"scope": 327,
+									"src": "3392:77:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "5678c9b0",
+									"id": 216,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_MIN_REWARD_DataValidation",
+									"nameLocation": "3484:37:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 212,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3521:2:0"
+									},
+									"returnParameters": {
+										"id": 215,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 214,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 216,
+												"src": "3546:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 213,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3546:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3545:9:0"
+									},
+									"scope": 327,
+									"src": "3475:80:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "ec71e2bb",
+									"id": 221,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_INTER_ALLOCATION_DURATION",
+									"nameLocation": "3570:37:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 217,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3607:2:0"
+									},
+									"returnParameters": {
+										"id": 220,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 219,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 221,
+												"src": "3632:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 218,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3632:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3631:9:0"
+									},
+									"scope": 327,
+									"src": "3561:80:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "d891c6f2",
+									"id": 226,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_TOGGLE_ENABLED",
+									"nameLocation": "3656:26:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 222,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3682:2:0"
+									},
+									"returnParameters": {
+										"id": 225,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 224,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 226,
+												"src": "3707:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 223,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "3707:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3706:6:0"
+									},
+									"scope": 327,
+									"src": "3647:66:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "d9296ee8",
+									"id": 231,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_TIMEFRAME_DURATION",
+									"nameLocation": "3728:30:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 227,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3758:2:0"
+									},
+									"returnParameters": {
+										"id": 230,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 229,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 231,
+												"src": "3783:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 228,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3783:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3782:9:0"
+									},
+									"scope": 327,
+									"src": "3719:73:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "7202359d",
+									"id": 236,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_GLOBAL_MAX_QUALITY_PER_PERIOD",
+									"nameLocation": "3807:41:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 232,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3848:2:0"
+									},
+									"returnParameters": {
+										"id": 235,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 234,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 236,
+												"src": "3873:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 233,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3873:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3872:9:0"
+									},
+									"scope": 327,
+									"src": "3798:84:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "9368c751",
+									"id": 241,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_MAX_QUALITY_PER_USER_PER_PERIOD",
+									"nameLocation": "3897:43:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 237,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "3940:2:0"
+									},
+									"returnParameters": {
+										"id": 240,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 239,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 241,
+												"src": "3965:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 238,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "3965:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "3964:9:0"
+									},
+									"scope": 327,
+									"src": "3888:86:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "f5ca4098",
+									"id": 246,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_QUALITY_NB_TIMEFRAMES",
+									"nameLocation": "3989:25:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 242,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4014:2:0"
+									},
+									"returnParameters": {
+										"id": 245,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 244,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 246,
+												"src": "4039:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 243,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4039:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4038:9:0"
+									},
+									"scope": 327,
+									"src": "3980:68:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "0363a1bf",
+									"id": 251,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_DATA_BATCH_SIZE",
+									"nameLocation": "4124:29:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 247,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4153:2:0"
+									},
+									"returnParameters": {
+										"id": 250,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 249,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 251,
+												"src": "4178:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 248,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4178:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4177:9:0"
+									},
+									"scope": 327,
+									"src": "4115:72:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "b1562f67",
+									"id": 256,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_MIN_STAKE",
+									"nameLocation": "4202:23:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 252,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4225:2:0"
+									},
+									"returnParameters": {
+										"id": 255,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 254,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 256,
+												"src": "4250:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 253,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4250:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4249:9:0"
+									},
+									"scope": 327,
+									"src": "4193:66:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "995adbdd",
+									"id": 261,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_MIN_CONSENSUS_WORKER_COUNT",
+									"nameLocation": "4274:40:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 257,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4314:2:0"
+									},
+									"returnParameters": {
+										"id": 260,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 259,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 261,
+												"src": "4339:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 258,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4339:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4338:9:0"
+									},
+									"scope": 327,
+									"src": "4265:83:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "3968ec84",
+									"id": 266,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_MAX_CONSENSUS_WORKER_COUNT",
+									"nameLocation": "4363:40:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 262,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4403:2:0"
+									},
+									"returnParameters": {
+										"id": 265,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 264,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 266,
+												"src": "4428:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 263,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4428:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4427:9:0"
+									},
+									"scope": 327,
+									"src": "4354:83:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "9279e9d4",
+									"id": 271,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_COMMIT_ROUND_DURATION",
+									"nameLocation": "4452:35:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 267,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4487:2:0"
+									},
+									"returnParameters": {
+										"id": 270,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 269,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 271,
+												"src": "4512:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 268,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4512:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4511:9:0"
+									},
+									"scope": 327,
+									"src": "4443:78:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "29e3dd1f",
+									"id": 276,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_REVEAL_ROUND_DURATION",
+									"nameLocation": "4536:35:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 272,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4571:2:0"
+									},
+									"returnParameters": {
+										"id": 275,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 274,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 276,
+												"src": "4596:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 273,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4596:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4595:9:0"
+									},
+									"scope": 327,
+									"src": "4527:78:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "64aebf8a",
+									"id": 281,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_MIN_REP_SpotData",
+									"nameLocation": "4620:30:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 277,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4650:2:0"
+									},
+									"returnParameters": {
+										"id": 280,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 279,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 281,
+												"src": "4675:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 278,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4675:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4674:9:0"
+									},
+									"scope": 327,
+									"src": "4611:73:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "648241f2",
+									"id": 286,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_MIN_REWARD_SpotData",
+									"nameLocation": "4699:33:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 282,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4732:2:0"
+									},
+									"returnParameters": {
+										"id": 285,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 284,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 286,
+												"src": "4757:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 283,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4757:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4756:9:0"
+									},
+									"scope": 327,
+									"src": "4690:76:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "49b46787",
+									"id": 291,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_MIN_REP_DataValidation",
+									"nameLocation": "4781:36:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 287,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4817:2:0"
+									},
+									"returnParameters": {
+										"id": 290,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 289,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 291,
+												"src": "4842:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 288,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4842:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4841:9:0"
+									},
+									"scope": 327,
+									"src": "4772:79:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "893b2a76",
+									"id": 296,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_MIN_REWARD_DataValidation",
+									"nameLocation": "4866:39:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 292,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4905:2:0"
+									},
+									"returnParameters": {
+										"id": 295,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 294,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 296,
+												"src": "4930:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 293,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "4930:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "4929:9:0"
+									},
+									"scope": 327,
+									"src": "4857:82:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "45515de8",
+									"id": 301,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_INTER_ALLOCATION_DURATION",
+									"nameLocation": "4954:39:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 297,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "4993:2:0"
+									},
+									"returnParameters": {
+										"id": 300,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 299,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 301,
+												"src": "5018:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 298,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "5018:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "5017:9:0"
+									},
+									"scope": 327,
+									"src": "4945:82:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "d495a822",
+									"id": 306,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_TOGGLE_ENABLED",
+									"nameLocation": "5042:28:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 302,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "5070:2:0"
+									},
+									"returnParameters": {
+										"id": 305,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 304,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 306,
+												"src": "5095:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 303,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "5095:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "5094:6:0"
+									},
+									"scope": 327,
+									"src": "5033:68:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "37808f77",
+									"id": 311,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_TIMEFRAME_DURATION",
+									"nameLocation": "5116:32:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 307,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "5148:2:0"
+									},
+									"returnParameters": {
+										"id": 310,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 309,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 311,
+												"src": "5173:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 308,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "5173:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "5172:9:0"
+									},
+									"scope": 327,
+									"src": "5107:75:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "6c06a895",
+									"id": 316,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_GLOBAL_MAX_ARCHIVING_PER_PERIOD",
+									"nameLocation": "5197:45:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 312,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "5242:2:0"
+									},
+									"returnParameters": {
+										"id": 315,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 314,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 316,
+												"src": "5267:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 313,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "5267:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "5266:9:0"
+									},
+									"scope": 327,
+									"src": "5188:88:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "ca6da7f0",
+									"id": 321,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_MAX_ARCHIVING_PER_USER_PER_PERIOD",
+									"nameLocation": "5291:47:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 317,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "5338:2:0"
+									},
+									"returnParameters": {
+										"id": 320,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 319,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 321,
+												"src": "5363:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 318,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "5363:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "5362:9:0"
+									},
+									"scope": 327,
+									"src": "5282:90:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "e55b9005",
+									"id": 326,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "get_ARCHIVING_NB_TIMEFRAMES",
+									"nameLocation": "5387:27:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 322,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "5414:2:0"
+									},
+									"returnParameters": {
+										"id": 325,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 324,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 326,
+												"src": "5439:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 323,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "5439:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "5438:9:0"
+									},
+									"scope": 327,
+									"src": "5378:70:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 328,
+							"src": "61:5390:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "36:5416:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

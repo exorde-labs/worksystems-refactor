@@ -1,0 +1,246 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint128",
+						"name": "_DataBatchId",
+						"type": "uint128"
+					}
+				],
+				"name": "getBatchByID",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint128",
+								"name": "start_idx",
+								"type": "uint128"
+							},
+							{
+								"internalType": "uint32",
+								"name": "counter",
+								"type": "uint32"
+							},
+							{
+								"internalType": "uint32",
+								"name": "item_count",
+								"type": "uint32"
+							},
+							{
+								"internalType": "uint16",
+								"name": "uncommited_workers",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "unrevealed_workers",
+								"type": "uint16"
+							},
+							{
+								"internalType": "bool",
+								"name": "complete",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "checked",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "allocated_to_work",
+								"type": "bool"
+							},
+							{
+								"internalType": "enum IDataBase.DataStatus",
+								"name": "status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint16",
+								"name": "votesFor",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint16",
+								"name": "votesAgainst",
+								"type": "uint16"
+							},
+							{
+								"internalType": "uint64",
+								"name": "commitEndDate",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "revealEndDate",
+								"type": "uint64"
+							},
+							{
+								"internalType": "string",
+								"name": "batchIPFSfile",
+								"type": "string"
+							}
+						],
+						"internalType": "struct IDataBase.BatchMetadata",
+						"name": "batch",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint128",
+						"name": "_DataBatchId",
+						"type": "uint128"
+					}
+				],
+				"name": "getBatchIPFSFileByID",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "batch",
+						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint128",
+						"name": "_DataId",
+						"type": "uint128"
+					}
+				],
+				"name": "getDataByID",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint64",
+								"name": "timestamp",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "item_count",
+								"type": "uint64"
+							},
+							{
+								"internalType": "enum IDataBase.DataStatus",
+								"name": "status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "string",
+								"name": "extra",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "author",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "ipfs_hash",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "URL_domain",
+								"type": "string"
+							}
+						],
+						"internalType": "struct IDataSpotting.SpottedData",
+						"name": "data",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"getBatchByID(uint128)": {
+					"returns": {
+						"batch": "as BatchMetadata struct"
+					}
+				},
+				"getBatchIPFSFileByID(uint128)": {
+					"params": {
+						"_DataBatchId": "ID of the batch"
+					}
+				},
+				"getDataByID(uint128)": {
+					"returns": {
+						"data": "as SpottedData struct"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getBatchByID(uint128)": {
+					"notice": "get DataBatch By ID"
+				},
+				"getBatchIPFSFileByID(uint128)": {
+					"notice": "get Output Batch IPFS File By ID"
+				},
+				"getDataByID(uint128)": {
+					"notice": "get Data By ID"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"worksystems/interfaces/IDataSpotting.sol": "IDataSpotting"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"worksystems/interfaces/IDataBase.sol": {
+			"keccak256": "0x551b6ba12d0c7c6ab7f500cb26299bee89965ec2ec2e6767030a6fdfd9df4df3",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://49c68cd4ae7351908b7f58f12efe5cb617543b2f536efaabc60baf0aeba8c738",
+				"dweb:/ipfs/QmbTmLJYdtR7Y7zCJGdvCYpiALDEirvPYH9wGutoTGyxZm"
+			]
+		},
+		"worksystems/interfaces/IDataSpotting.sol": {
+			"keccak256": "0xfed90259e074727248f5e816bb49b8d72c4b1027355fc82c0b077c798b1959b5",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://8862c0a45c49fefdbbf679a4a70b1e238fa9e7de54a8c732f7894d83b484a0cb",
+				"dweb:/ipfs/QmXnn1p6PBou6bkDsdFSzUKC8LGjXyzsWsbDmCRHSqidRx"
+			]
+		}
+	},
+	"version": 1
+}

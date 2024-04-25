@@ -1,0 +1,155 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"getBatchByID(uint128)": "fcbe89c9",
+			"getDataByID(uint128)": "7f30c9b3"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "uint128",
+					"name": "_DataBatchId",
+					"type": "uint128"
+				}
+			],
+			"name": "getBatchByID",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint128",
+							"name": "start_idx",
+							"type": "uint128"
+						},
+						{
+							"internalType": "uint32",
+							"name": "counter",
+							"type": "uint32"
+						},
+						{
+							"internalType": "uint32",
+							"name": "item_count",
+							"type": "uint32"
+						},
+						{
+							"internalType": "bool",
+							"name": "complete",
+							"type": "bool"
+						},
+						{
+							"internalType": "bool",
+							"name": "allocated_to_work",
+							"type": "bool"
+						},
+						{
+							"internalType": "bool",
+							"name": "quality_checked",
+							"type": "bool"
+						},
+						{
+							"internalType": "bool",
+							"name": "relevance_checked",
+							"type": "bool"
+						}
+					],
+					"internalType": "struct IDataQualityBase.BatchMetadata",
+					"name": "batch",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint128",
+					"name": "_DataId",
+					"type": "uint128"
+				}
+			],
+			"name": "getDataByID",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint64",
+							"name": "timestamp",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "unverified_item_count",
+							"type": "uint64"
+						},
+						{
+							"internalType": "address",
+							"name": "author",
+							"type": "address"
+						},
+						{
+							"internalType": "string",
+							"name": "ipfs_hash",
+							"type": "string"
+						}
+					],
+					"internalType": "struct IDataQuality.QualityData",
+					"name": "data",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	]
+}

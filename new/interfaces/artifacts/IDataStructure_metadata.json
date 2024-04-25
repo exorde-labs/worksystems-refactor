@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.8+commit.dddeac2f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/worksystems/interfaces/IDataStructure.sol": "IDataStructure"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/worksystems/interfaces/IDataStructure.sol": {
+			"keccak256": "0x5a5bdfe97d23a3384472687c55339fe28a56920dff9b722a03582643ffc2e9f9",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://c61eaa172252015c7d68be1ea0c5c48fa3e86915c8764ff23d67a763bc9e3387",
+				"dweb:/ipfs/QmaV1hShVb9geDYHL3aYH4je4DERq6e5yceVwKe65k1EXk"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"worksystems/interfaces/IDataBase.sol": "IDataBase"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"worksystems/interfaces/IDataBase.sol": {
+			"keccak256": "0x551b6ba12d0c7c6ab7f500cb26299bee89965ec2ec2e6767030a6fdfd9df4df3",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://49c68cd4ae7351908b7f58f12efe5cb617543b2f536efaabc60baf0aeba8c738",
+				"dweb:/ipfs/QmbTmLJYdtR7Y7zCJGdvCYpiALDEirvPYH9wGutoTGyxZm"
+			]
+		}
+	},
+	"version": 1
+}

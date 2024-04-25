@@ -1,0 +1,2056 @@
+{
+	"id": "3eded37d26b2b56c7a9a645dc7cf8082",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.20",
+	"solcLongVersion": "0.8.20+commit.a1b79de6",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"worksystems/interfaces/IDataQuality.sol": {
+				"content": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity 0.8.20;\r\n\r\n\r\nimport \"./IDataQualityBase.sol\";\r\n\r\ninterface IDataQuality is IDataQualityBase {\r\n\r\n    // ------ Worker State Structure : 2 slots\r\n    struct WorkerState {\r\n        uint128 allocated_work_batch;\r\n        uint64 last_interaction_date;\r\n        uint16 succeeding_novote_count;\r\n        bool registered;\r\n        bool unregistration_request;\r\n        bool isWorkerSeen;\r\n        uint64 registration_date;\r\n        uint64 allocated_batch_counter;\r\n        uint64 majority_counter;\r\n        uint64 minority_counter;\r\n    }\r\n\r\n    // ------ Atomic Data Structure : 5 slots\r\n    struct SpottedData {\r\n        uint64 timestamp; // expiration date of commit period for SpottedData\r\n        uint64 item_count;\r\n        // uint16 lang;    // language of the spotted data (all sub items must be of the same language)\r\n        string extra; // extra_data\r\n        address author; // author of the proposal\r\n        string ipfs_hash; // expiration date of commit period for SpottedData\r\n        string URL_domain; // URL domain\r\n    }\r\n\r\n    // ------ User VoteSubmission struct  : 4 slots\r\n    struct VoteSubmission {\r\n        bool commited;\r\n        bool revealed;\r\n        uint8 vote;\r\n        uint32 batchCount;\r\n        string newFile;\r\n        string batchFrom;\r\n    }\r\n\r\n    // ------ Atomic Data Structure : 5 slots\r\n    struct QualityData {\r\n        uint64 timestamp; // expiration date of commit period for QualityData\r\n        uint64 unverified_item_count;\r\n        // uint16 lang;    // language of the Quality data (all sub items must be of the same language)\r\n        address author; // author of the proposal\r\n        string ipfs_hash; // expiration date of commit period for QualityData\r\n    }\r\n\r\n    /**\r\n     * @notice get DataBatch By ID\r\n     * @return batch as BatchMetadata struct\r\n     */\r\n    function getBatchByID(uint128 _DataBatchId) external view returns(BatchMetadata memory batch);\r\n\r\n    /**\r\n     * @notice get Data By ID\r\n     * @return data as QualityData struct\r\n     */\r\n    function getDataByID(uint128 _DataId) external view returns(QualityData memory data);\r\n    \r\n}\r\n"
+			},
+			"worksystems/interfaces/IDataQualityBase.sol": {
+				"content": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity 0.8.20;\r\n\r\n\r\ninterface IDataQualityBase {\r\n    \r\n\r\n    // ------ Data batch Structure : 4 slots\r\n    struct BatchMetadata {\r\n        uint128 start_idx;\r\n        uint32 counter;\r\n        uint32 item_count;\r\n        bool complete;\r\n        bool allocated_to_work;\r\n        bool quality_checked;\r\n        bool relevance_checked;\r\n    }\r\n\r\n    struct ProcessMetadata {\r\n        uint16 uncommited_quality_workers;\r\n        uint16 unrevealed_quality_workers;\r\n        uint16 uncommited_relevance_workers;\r\n        uint16 unrevealed_relevance_workers;\r\n        uint64 quality_commitEndDate; // expiration date of commit period for the quality round\r\n        uint64 quality_revealEndDate; // expiration date of reveal period for the quality round\r\n        uint64 relevance_commitEndDate; // expiration date of commit period for the relevance round\r\n        uint64 relevance_revealEndDate; // expiration date of reveal period for the relevance round\r\n    }\r\n\r\n    // ------ Spot-flow related structure : 1 slots\r\n    struct TimeframeCounter {\r\n        uint128 timestamp;\r\n        uint128 counter;\r\n    }\r\n\r\n    // ------ Commit Reveal struct : 1 slot\r\n    struct WorkerStatus {\r\n        bool isActiveWorker;\r\n        bool isAvailableWorker;\r\n        bool isBusyWorker;\r\n        bool isToUnregisterWorker;\r\n        uint32 activeWorkersIndex;\r\n        uint32 availableWorkersIndex;\r\n        uint32 busyWorkersIndex;\r\n        uint32 toUnregisterWorkersIndex;\r\n    }\r\n}\r\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"worksystems/interfaces/IDataQuality.sol": {
+				"IDataQuality": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "uint128",
+									"name": "_DataBatchId",
+									"type": "uint128"
+								}
+							],
+							"name": "getBatchByID",
+							"outputs": [
+								{
+									"components": [
+										{
+											"internalType": "uint128",
+											"name": "start_idx",
+											"type": "uint128"
+										},
+										{
+											"internalType": "uint32",
+											"name": "counter",
+											"type": "uint32"
+										},
+										{
+											"internalType": "uint32",
+											"name": "item_count",
+											"type": "uint32"
+										},
+										{
+											"internalType": "bool",
+											"name": "complete",
+											"type": "bool"
+										},
+										{
+											"internalType": "bool",
+											"name": "allocated_to_work",
+											"type": "bool"
+										},
+										{
+											"internalType": "bool",
+											"name": "quality_checked",
+											"type": "bool"
+										},
+										{
+											"internalType": "bool",
+											"name": "relevance_checked",
+											"type": "bool"
+										}
+									],
+									"internalType": "struct IDataQualityBase.BatchMetadata",
+									"name": "batch",
+									"type": "tuple"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "uint128",
+									"name": "_DataId",
+									"type": "uint128"
+								}
+							],
+							"name": "getDataByID",
+							"outputs": [
+								{
+									"components": [
+										{
+											"internalType": "uint64",
+											"name": "timestamp",
+											"type": "uint64"
+										},
+										{
+											"internalType": "uint64",
+											"name": "unverified_item_count",
+											"type": "uint64"
+										},
+										{
+											"internalType": "address",
+											"name": "author",
+											"type": "address"
+										},
+										{
+											"internalType": "string",
+											"name": "ipfs_hash",
+											"type": "string"
+										}
+									],
+									"internalType": "struct IDataQuality.QualityData",
+									"name": "data",
+									"type": "tuple"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {
+							"getBatchByID(uint128)": {
+								"returns": {
+									"batch": "as BatchMetadata struct"
+								}
+							},
+							"getDataByID(uint128)": {
+								"returns": {
+									"data": "as QualityData struct"
+								}
+							}
+						},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"getBatchByID(uint128)": "fcbe89c9",
+							"getDataByID(uint128)": "7f30c9b3"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint128\",\"name\":\"_DataBatchId\",\"type\":\"uint128\"}],\"name\":\"getBatchByID\",\"outputs\":[{\"components\":[{\"internalType\":\"uint128\",\"name\":\"start_idx\",\"type\":\"uint128\"},{\"internalType\":\"uint32\",\"name\":\"counter\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"item_count\",\"type\":\"uint32\"},{\"internalType\":\"bool\",\"name\":\"complete\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"allocated_to_work\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"quality_checked\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"relevance_checked\",\"type\":\"bool\"}],\"internalType\":\"struct IDataQualityBase.BatchMetadata\",\"name\":\"batch\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint128\",\"name\":\"_DataId\",\"type\":\"uint128\"}],\"name\":\"getDataByID\",\"outputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"unverified_item_count\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"author\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"ipfs_hash\",\"type\":\"string\"}],\"internalType\":\"struct IDataQuality.QualityData\",\"name\":\"data\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getBatchByID(uint128)\":{\"returns\":{\"batch\":\"as BatchMetadata struct\"}},\"getDataByID(uint128)\":{\"returns\":{\"data\":\"as QualityData struct\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getBatchByID(uint128)\":{\"notice\":\"get DataBatch By ID\"},\"getDataByID(uint128)\":{\"notice\":\"get Data By ID\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"worksystems/interfaces/IDataQuality.sol\":\"IDataQuality\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"worksystems/interfaces/IDataQuality.sol\":{\"keccak256\":\"0x6d930514f9e221cb799142aae59dc5b04fe7230507dadb65f412f653b768218b\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://7c20267cb87295d3e78516686afd4903de3d74ea0a2ba107d186ed5d3ffd034e\",\"dweb:/ipfs/QmR6WbwqW1rZezHqeSAfuqmg4KeAfXcZQahw7Pwy9vVy5b\"]},\"worksystems/interfaces/IDataQualityBase.sol\":{\"keccak256\":\"0xcc64cc60fbc8998437729d20ea9400201a771edafa1ede6a0ff769522febb432\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://b7740188017e0cd76bec7279fb4bb8eac4f395075131902896fa42237099d00c\",\"dweb:/ipfs/QmeCKtJt5jWy2E8wPGRPELxnkm5DXh2pHbQDbtiGfmN4eY\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {
+							"getBatchByID(uint128)": {
+								"notice": "get DataBatch By ID"
+							},
+							"getDataByID(uint128)": {
+								"notice": "get Data By ID"
+							}
+						},
+						"version": 1
+					}
+				}
+			},
+			"worksystems/interfaces/IDataQualityBase.sol": {
+				"IDataQualityBase": {
+					"abi": [],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"worksystems/interfaces/IDataQualityBase.sol\":\"IDataQualityBase\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"worksystems/interfaces/IDataQualityBase.sol\":{\"keccak256\":\"0xcc64cc60fbc8998437729d20ea9400201a771edafa1ede6a0ff769522febb432\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://b7740188017e0cd76bec7279fb4bb8eac4f395075131902896fa42237099d00c\",\"dweb:/ipfs/QmeCKtJt5jWy2E8wPGRPELxnkm5DXh2pHbQDbtiGfmN4eY\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"worksystems/interfaces/IDataQuality.sol": {
+				"ast": {
+					"absolutePath": "worksystems/interfaces/IDataQuality.sol",
+					"exportedSymbols": {
+						"IDataQuality": [
+							79
+						],
+						"IDataQualityBase": [
+							136
+						]
+					},
+					"id": 80,
+					"license": "GPL-3.0",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"0.8",
+								".20"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "37:23:0"
+						},
+						{
+							"absolutePath": "worksystems/interfaces/IDataQualityBase.sol",
+							"file": "./IDataQualityBase.sol",
+							"id": 2,
+							"nameLocation": "-1:-1:-1",
+							"nodeType": "ImportDirective",
+							"scope": 80,
+							"sourceUnit": 137,
+							"src": "66:32:0",
+							"symbolAliases": [],
+							"unitAlias": ""
+						},
+						{
+							"abstract": false,
+							"baseContracts": [
+								{
+									"baseName": {
+										"id": 3,
+										"name": "IDataQualityBase",
+										"nameLocations": [
+											"128:16:0"
+										],
+										"nodeType": "IdentifierPath",
+										"referencedDeclaration": 136,
+										"src": "128:16:0"
+									},
+									"id": 4,
+									"nodeType": "InheritanceSpecifier",
+									"src": "128:16:0"
+								}
+							],
+							"canonicalName": "IDataQuality",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": false,
+							"id": 79,
+							"linearizedBaseContracts": [
+								79,
+								136
+							],
+							"name": "IDataQuality",
+							"nameLocation": "112:12:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"canonicalName": "IDataQuality.WorkerState",
+									"id": 25,
+									"members": [
+										{
+											"constant": false,
+											"id": 6,
+											"mutability": "mutable",
+											"name": "allocated_work_batch",
+											"nameLocation": "240:20:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "232:28:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint128",
+												"typeString": "uint128"
+											},
+											"typeName": {
+												"id": 5,
+												"name": "uint128",
+												"nodeType": "ElementaryTypeName",
+												"src": "232:7:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint128",
+													"typeString": "uint128"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 8,
+											"mutability": "mutable",
+											"name": "last_interaction_date",
+											"nameLocation": "278:21:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "271:28:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 7,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "271:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 10,
+											"mutability": "mutable",
+											"name": "succeeding_novote_count",
+											"nameLocation": "317:23:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "310:30:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint16",
+												"typeString": "uint16"
+											},
+											"typeName": {
+												"id": 9,
+												"name": "uint16",
+												"nodeType": "ElementaryTypeName",
+												"src": "310:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint16",
+													"typeString": "uint16"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 12,
+											"mutability": "mutable",
+											"name": "registered",
+											"nameLocation": "356:10:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "351:15:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 11,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "351:4:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 14,
+											"mutability": "mutable",
+											"name": "unregistration_request",
+											"nameLocation": "382:22:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "377:27:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 13,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "377:4:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 16,
+											"mutability": "mutable",
+											"name": "isWorkerSeen",
+											"nameLocation": "420:12:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "415:17:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 15,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "415:4:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 18,
+											"mutability": "mutable",
+											"name": "registration_date",
+											"nameLocation": "450:17:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "443:24:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 17,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "443:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 20,
+											"mutability": "mutable",
+											"name": "allocated_batch_counter",
+											"nameLocation": "485:23:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "478:30:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 19,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "478:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 22,
+											"mutability": "mutable",
+											"name": "majority_counter",
+											"nameLocation": "526:16:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "519:23:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 21,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "519:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 24,
+											"mutability": "mutable",
+											"name": "minority_counter",
+											"nameLocation": "560:16:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 25,
+											"src": "553:23:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 23,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "553:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										}
+									],
+									"name": "WorkerState",
+									"nameLocation": "209:11:0",
+									"nodeType": "StructDefinition",
+									"scope": 79,
+									"src": "202:382:0",
+									"visibility": "public"
+								},
+								{
+									"canonicalName": "IDataQuality.SpottedData",
+									"id": 38,
+									"members": [
+										{
+											"constant": false,
+											"id": 27,
+											"mutability": "mutable",
+											"name": "timestamp",
+											"nameLocation": "676:9:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 38,
+											"src": "669:16:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 26,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "669:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 29,
+											"mutability": "mutable",
+											"name": "item_count",
+											"nameLocation": "755:10:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 38,
+											"src": "748:17:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 28,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "748:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 31,
+											"mutability": "mutable",
+											"name": "extra",
+											"nameLocation": "888:5:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 38,
+											"src": "881:12:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											},
+											"typeName": {
+												"id": 30,
+												"name": "string",
+												"nodeType": "ElementaryTypeName",
+												"src": "881:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_string_storage_ptr",
+													"typeString": "string"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 33,
+											"mutability": "mutable",
+											"name": "author",
+											"nameLocation": "926:6:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 38,
+											"src": "918:14:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_address",
+												"typeString": "address"
+											},
+											"typeName": {
+												"id": 32,
+												"name": "address",
+												"nodeType": "ElementaryTypeName",
+												"src": "918:7:0",
+												"stateMutability": "nonpayable",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 35,
+											"mutability": "mutable",
+											"name": "ipfs_hash",
+											"nameLocation": "976:9:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 38,
+											"src": "969:16:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											},
+											"typeName": {
+												"id": 34,
+												"name": "string",
+												"nodeType": "ElementaryTypeName",
+												"src": "969:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_string_storage_ptr",
+													"typeString": "string"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 37,
+											"mutability": "mutable",
+											"name": "URL_domain",
+											"nameLocation": "1055:10:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 38,
+											"src": "1048:17:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											},
+											"typeName": {
+												"id": 36,
+												"name": "string",
+												"nodeType": "ElementaryTypeName",
+												"src": "1048:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_string_storage_ptr",
+													"typeString": "string"
+												}
+											},
+											"visibility": "internal"
+										}
+									],
+									"name": "SpottedData",
+									"nameLocation": "646:11:0",
+									"nodeType": "StructDefinition",
+									"scope": 79,
+									"src": "639:448:0",
+									"visibility": "public"
+								},
+								{
+									"canonicalName": "IDataQuality.VoteSubmission",
+									"id": 51,
+									"members": [
+										{
+											"constant": false,
+											"id": 40,
+											"mutability": "mutable",
+											"name": "commited",
+											"nameLocation": "1186:8:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 51,
+											"src": "1181:13:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 39,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "1181:4:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 42,
+											"mutability": "mutable",
+											"name": "revealed",
+											"nameLocation": "1210:8:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 51,
+											"src": "1205:13:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 41,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "1205:4:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 44,
+											"mutability": "mutable",
+											"name": "vote",
+											"nameLocation": "1235:4:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 51,
+											"src": "1229:10:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint8",
+												"typeString": "uint8"
+											},
+											"typeName": {
+												"id": 43,
+												"name": "uint8",
+												"nodeType": "ElementaryTypeName",
+												"src": "1229:5:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint8",
+													"typeString": "uint8"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 46,
+											"mutability": "mutable",
+											"name": "batchCount",
+											"nameLocation": "1257:10:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 51,
+											"src": "1250:17:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint32",
+												"typeString": "uint32"
+											},
+											"typeName": {
+												"id": 45,
+												"name": "uint32",
+												"nodeType": "ElementaryTypeName",
+												"src": "1250:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint32",
+													"typeString": "uint32"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 48,
+											"mutability": "mutable",
+											"name": "newFile",
+											"nameLocation": "1285:7:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 51,
+											"src": "1278:14:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											},
+											"typeName": {
+												"id": 47,
+												"name": "string",
+												"nodeType": "ElementaryTypeName",
+												"src": "1278:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_string_storage_ptr",
+													"typeString": "string"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 50,
+											"mutability": "mutable",
+											"name": "batchFrom",
+											"nameLocation": "1310:9:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 51,
+											"src": "1303:16:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											},
+											"typeName": {
+												"id": 49,
+												"name": "string",
+												"nodeType": "ElementaryTypeName",
+												"src": "1303:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_string_storage_ptr",
+													"typeString": "string"
+												}
+											},
+											"visibility": "internal"
+										}
+									],
+									"name": "VoteSubmission",
+									"nameLocation": "1155:14:0",
+									"nodeType": "StructDefinition",
+									"scope": 79,
+									"src": "1148:179:0",
+									"visibility": "public"
+								},
+								{
+									"canonicalName": "IDataQuality.QualityData",
+									"id": 60,
+									"members": [
+										{
+											"constant": false,
+											"id": 53,
+											"mutability": "mutable",
+											"name": "timestamp",
+											"nameLocation": "1419:9:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 60,
+											"src": "1412:16:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 52,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "1412:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 55,
+											"mutability": "mutable",
+											"name": "unverified_item_count",
+											"nameLocation": "1498:21:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 60,
+											"src": "1491:28:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 54,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "1491:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 57,
+											"mutability": "mutable",
+											"name": "author",
+											"nameLocation": "1643:6:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 60,
+											"src": "1635:14:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_address",
+												"typeString": "address"
+											},
+											"typeName": {
+												"id": 56,
+												"name": "address",
+												"nodeType": "ElementaryTypeName",
+												"src": "1635:7:0",
+												"stateMutability": "nonpayable",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 59,
+											"mutability": "mutable",
+											"name": "ipfs_hash",
+											"nameLocation": "1693:9:0",
+											"nodeType": "VariableDeclaration",
+											"scope": 60,
+											"src": "1686:16:0",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_string_storage_ptr",
+												"typeString": "string"
+											},
+											"typeName": {
+												"id": 58,
+												"name": "string",
+												"nodeType": "ElementaryTypeName",
+												"src": "1686:6:0",
+												"typeDescriptions": {
+													"typeIdentifier": "t_string_storage_ptr",
+													"typeString": "string"
+												}
+											},
+											"visibility": "internal"
+										}
+									],
+									"name": "QualityData",
+									"nameLocation": "1389:11:0",
+									"nodeType": "StructDefinition",
+									"scope": 79,
+									"src": "1382:380:0",
+									"visibility": "public"
+								},
+								{
+									"documentation": {
+										"id": 61,
+										"nodeType": "StructuredDocumentation",
+										"src": "1770:94:0",
+										"text": " @notice get DataBatch By ID\n @return batch as BatchMetadata struct"
+									},
+									"functionSelector": "fcbe89c9",
+									"id": 69,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getBatchByID",
+									"nameLocation": "1879:12:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 64,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 63,
+												"mutability": "mutable",
+												"name": "_DataBatchId",
+												"nameLocation": "1900:12:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 69,
+												"src": "1892:20:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint128",
+													"typeString": "uint128"
+												},
+												"typeName": {
+													"id": 62,
+													"name": "uint128",
+													"nodeType": "ElementaryTypeName",
+													"src": "1892:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint128",
+														"typeString": "uint128"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1891:22:0"
+									},
+									"returnParameters": {
+										"id": 68,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 67,
+												"mutability": "mutable",
+												"name": "batch",
+												"nameLocation": "1957:5:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 69,
+												"src": "1936:26:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_struct$_BatchMetadata_$96_memory_ptr",
+													"typeString": "struct IDataQualityBase.BatchMetadata"
+												},
+												"typeName": {
+													"id": 66,
+													"nodeType": "UserDefinedTypeName",
+													"pathNode": {
+														"id": 65,
+														"name": "BatchMetadata",
+														"nameLocations": [
+															"1936:13:0"
+														],
+														"nodeType": "IdentifierPath",
+														"referencedDeclaration": 96,
+														"src": "1936:13:0"
+													},
+													"referencedDeclaration": 96,
+													"src": "1936:13:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_struct$_BatchMetadata_$96_storage_ptr",
+														"typeString": "struct IDataQualityBase.BatchMetadata"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1935:28:0"
+									},
+									"scope": 79,
+									"src": "1870:94:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 70,
+										"nodeType": "StructuredDocumentation",
+										"src": "1972:86:0",
+										"text": " @notice get Data By ID\n @return data as QualityData struct"
+									},
+									"functionSelector": "7f30c9b3",
+									"id": 78,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getDataByID",
+									"nameLocation": "2073:11:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 73,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 72,
+												"mutability": "mutable",
+												"name": "_DataId",
+												"nameLocation": "2093:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 78,
+												"src": "2085:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint128",
+													"typeString": "uint128"
+												},
+												"typeName": {
+													"id": 71,
+													"name": "uint128",
+													"nodeType": "ElementaryTypeName",
+													"src": "2085:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint128",
+														"typeString": "uint128"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2084:17:0"
+									},
+									"returnParameters": {
+										"id": 77,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 76,
+												"mutability": "mutable",
+												"name": "data",
+												"nameLocation": "2143:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 78,
+												"src": "2124:23:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_struct$_QualityData_$60_memory_ptr",
+													"typeString": "struct IDataQuality.QualityData"
+												},
+												"typeName": {
+													"id": 75,
+													"nodeType": "UserDefinedTypeName",
+													"pathNode": {
+														"id": 74,
+														"name": "QualityData",
+														"nameLocations": [
+															"2124:11:0"
+														],
+														"nodeType": "IdentifierPath",
+														"referencedDeclaration": 60,
+														"src": "2124:11:0"
+													},
+													"referencedDeclaration": 60,
+													"src": "2124:11:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_struct$_QualityData_$60_storage_ptr",
+														"typeString": "struct IDataQuality.QualityData"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2123:25:0"
+									},
+									"scope": 79,
+									"src": "2064:85:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 80,
+							"src": "102:2056:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "37:2123:0"
+				},
+				"id": 0
+			},
+			"worksystems/interfaces/IDataQualityBase.sol": {
+				"ast": {
+					"absolutePath": "worksystems/interfaces/IDataQualityBase.sol",
+					"exportedSymbols": {
+						"IDataQualityBase": [
+							136
+						]
+					},
+					"id": 137,
+					"license": "GPL-3.0",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 81,
+							"literals": [
+								"solidity",
+								"0.8",
+								".20"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "37:23:1"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IDataQualityBase",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": true,
+							"id": 136,
+							"linearizedBaseContracts": [
+								136
+							],
+							"name": "IDataQualityBase",
+							"nameLocation": "76:16:1",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"canonicalName": "IDataQualityBase.BatchMetadata",
+									"id": 96,
+									"members": [
+										{
+											"constant": false,
+											"id": 83,
+											"mutability": "mutable",
+											"name": "start_idx",
+											"nameLocation": "194:9:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 96,
+											"src": "186:17:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint128",
+												"typeString": "uint128"
+											},
+											"typeName": {
+												"id": 82,
+												"name": "uint128",
+												"nodeType": "ElementaryTypeName",
+												"src": "186:7:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint128",
+													"typeString": "uint128"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 85,
+											"mutability": "mutable",
+											"name": "counter",
+											"nameLocation": "221:7:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 96,
+											"src": "214:14:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint32",
+												"typeString": "uint32"
+											},
+											"typeName": {
+												"id": 84,
+												"name": "uint32",
+												"nodeType": "ElementaryTypeName",
+												"src": "214:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint32",
+													"typeString": "uint32"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 87,
+											"mutability": "mutable",
+											"name": "item_count",
+											"nameLocation": "246:10:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 96,
+											"src": "239:17:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint32",
+												"typeString": "uint32"
+											},
+											"typeName": {
+												"id": 86,
+												"name": "uint32",
+												"nodeType": "ElementaryTypeName",
+												"src": "239:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint32",
+													"typeString": "uint32"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 89,
+											"mutability": "mutable",
+											"name": "complete",
+											"nameLocation": "272:8:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 96,
+											"src": "267:13:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 88,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "267:4:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 91,
+											"mutability": "mutable",
+											"name": "allocated_to_work",
+											"nameLocation": "296:17:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 96,
+											"src": "291:22:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 90,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "291:4:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 93,
+											"mutability": "mutable",
+											"name": "quality_checked",
+											"nameLocation": "329:15:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 96,
+											"src": "324:20:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 92,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "324:4:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 95,
+											"mutability": "mutable",
+											"name": "relevance_checked",
+											"nameLocation": "360:17:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 96,
+											"src": "355:22:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 94,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "355:4:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										}
+									],
+									"name": "BatchMetadata",
+									"nameLocation": "161:13:1",
+									"nodeType": "StructDefinition",
+									"scope": 136,
+									"src": "154:231:1",
+									"visibility": "public"
+								},
+								{
+									"canonicalName": "IDataQualityBase.ProcessMetadata",
+									"id": 113,
+									"members": [
+										{
+											"constant": false,
+											"id": 98,
+											"mutability": "mutable",
+											"name": "uncommited_quality_workers",
+											"nameLocation": "434:26:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 113,
+											"src": "427:33:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint16",
+												"typeString": "uint16"
+											},
+											"typeName": {
+												"id": 97,
+												"name": "uint16",
+												"nodeType": "ElementaryTypeName",
+												"src": "427:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint16",
+													"typeString": "uint16"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 100,
+											"mutability": "mutable",
+											"name": "unrevealed_quality_workers",
+											"nameLocation": "478:26:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 113,
+											"src": "471:33:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint16",
+												"typeString": "uint16"
+											},
+											"typeName": {
+												"id": 99,
+												"name": "uint16",
+												"nodeType": "ElementaryTypeName",
+												"src": "471:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint16",
+													"typeString": "uint16"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 102,
+											"mutability": "mutable",
+											"name": "uncommited_relevance_workers",
+											"nameLocation": "522:28:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 113,
+											"src": "515:35:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint16",
+												"typeString": "uint16"
+											},
+											"typeName": {
+												"id": 101,
+												"name": "uint16",
+												"nodeType": "ElementaryTypeName",
+												"src": "515:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint16",
+													"typeString": "uint16"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 104,
+											"mutability": "mutable",
+											"name": "unrevealed_relevance_workers",
+											"nameLocation": "568:28:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 113,
+											"src": "561:35:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint16",
+												"typeString": "uint16"
+											},
+											"typeName": {
+												"id": 103,
+												"name": "uint16",
+												"nodeType": "ElementaryTypeName",
+												"src": "561:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint16",
+													"typeString": "uint16"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 106,
+											"mutability": "mutable",
+											"name": "quality_commitEndDate",
+											"nameLocation": "614:21:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 113,
+											"src": "607:28:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 105,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "607:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 108,
+											"mutability": "mutable",
+											"name": "quality_revealEndDate",
+											"nameLocation": "711:21:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 113,
+											"src": "704:28:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 107,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "704:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 110,
+											"mutability": "mutable",
+											"name": "relevance_commitEndDate",
+											"nameLocation": "808:23:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 113,
+											"src": "801:30:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 109,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "801:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 112,
+											"mutability": "mutable",
+											"name": "relevance_revealEndDate",
+											"nameLocation": "909:23:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 113,
+											"src": "902:30:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint64",
+												"typeString": "uint64"
+											},
+											"typeName": {
+												"id": 111,
+												"name": "uint64",
+												"nodeType": "ElementaryTypeName",
+												"src": "902:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												}
+											},
+											"visibility": "internal"
+										}
+									],
+									"name": "ProcessMetadata",
+									"nameLocation": "400:15:1",
+									"nodeType": "StructDefinition",
+									"scope": 136,
+									"src": "393:607:1",
+									"visibility": "public"
+								},
+								{
+									"canonicalName": "IDataQualityBase.TimeframeCounter",
+									"id": 118,
+									"members": [
+										{
+											"constant": false,
+											"id": 115,
+											"mutability": "mutable",
+											"name": "timestamp",
+											"nameLocation": "1104:9:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 118,
+											"src": "1096:17:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint128",
+												"typeString": "uint128"
+											},
+											"typeName": {
+												"id": 114,
+												"name": "uint128",
+												"nodeType": "ElementaryTypeName",
+												"src": "1096:7:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint128",
+													"typeString": "uint128"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 117,
+											"mutability": "mutable",
+											"name": "counter",
+											"nameLocation": "1132:7:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 118,
+											"src": "1124:15:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint128",
+												"typeString": "uint128"
+											},
+											"typeName": {
+												"id": 116,
+												"name": "uint128",
+												"nodeType": "ElementaryTypeName",
+												"src": "1124:7:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint128",
+													"typeString": "uint128"
+												}
+											},
+											"visibility": "internal"
+										}
+									],
+									"name": "TimeframeCounter",
+									"nameLocation": "1068:16:1",
+									"nodeType": "StructDefinition",
+									"scope": 136,
+									"src": "1061:86:1",
+									"visibility": "public"
+								},
+								{
+									"canonicalName": "IDataQualityBase.WorkerStatus",
+									"id": 135,
+									"members": [
+										{
+											"constant": false,
+											"id": 120,
+											"mutability": "mutable",
+											"name": "isActiveWorker",
+											"nameLocation": "1236:14:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 135,
+											"src": "1231:19:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 119,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "1231:4:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 122,
+											"mutability": "mutable",
+											"name": "isAvailableWorker",
+											"nameLocation": "1266:17:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 135,
+											"src": "1261:22:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 121,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "1261:4:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 124,
+											"mutability": "mutable",
+											"name": "isBusyWorker",
+											"nameLocation": "1299:12:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 135,
+											"src": "1294:17:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 123,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "1294:4:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 126,
+											"mutability": "mutable",
+											"name": "isToUnregisterWorker",
+											"nameLocation": "1327:20:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 135,
+											"src": "1322:25:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_bool",
+												"typeString": "bool"
+											},
+											"typeName": {
+												"id": 125,
+												"name": "bool",
+												"nodeType": "ElementaryTypeName",
+												"src": "1322:4:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 128,
+											"mutability": "mutable",
+											"name": "activeWorkersIndex",
+											"nameLocation": "1365:18:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 135,
+											"src": "1358:25:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint32",
+												"typeString": "uint32"
+											},
+											"typeName": {
+												"id": 127,
+												"name": "uint32",
+												"nodeType": "ElementaryTypeName",
+												"src": "1358:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint32",
+													"typeString": "uint32"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 130,
+											"mutability": "mutable",
+											"name": "availableWorkersIndex",
+											"nameLocation": "1401:21:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 135,
+											"src": "1394:28:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint32",
+												"typeString": "uint32"
+											},
+											"typeName": {
+												"id": 129,
+												"name": "uint32",
+												"nodeType": "ElementaryTypeName",
+												"src": "1394:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint32",
+													"typeString": "uint32"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 132,
+											"mutability": "mutable",
+											"name": "busyWorkersIndex",
+											"nameLocation": "1440:16:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 135,
+											"src": "1433:23:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint32",
+												"typeString": "uint32"
+											},
+											"typeName": {
+												"id": 131,
+												"name": "uint32",
+												"nodeType": "ElementaryTypeName",
+												"src": "1433:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint32",
+													"typeString": "uint32"
+												}
+											},
+											"visibility": "internal"
+										},
+										{
+											"constant": false,
+											"id": 134,
+											"mutability": "mutable",
+											"name": "toUnregisterWorkersIndex",
+											"nameLocation": "1474:24:1",
+											"nodeType": "VariableDeclaration",
+											"scope": 135,
+											"src": "1467:31:1",
+											"stateVariable": false,
+											"storageLocation": "default",
+											"typeDescriptions": {
+												"typeIdentifier": "t_uint32",
+												"typeString": "uint32"
+											},
+											"typeName": {
+												"id": 133,
+												"name": "uint32",
+												"nodeType": "ElementaryTypeName",
+												"src": "1467:6:1",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint32",
+													"typeString": "uint32"
+												}
+											},
+											"visibility": "internal"
+										}
+									],
+									"name": "WorkerStatus",
+									"nameLocation": "1207:12:1",
+									"nodeType": "StructDefinition",
+									"scope": 136,
+									"src": "1200:306:1",
+									"visibility": "public"
+								}
+							],
+							"scope": 137,
+							"src": "66:1443:1",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "37:1474:1"
+				},
+				"id": 1
+			}
+		}
+	}
+}

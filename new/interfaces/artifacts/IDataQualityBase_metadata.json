@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"worksystems/interfaces/IDataQualityBase.sol": "IDataQualityBase"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"worksystems/interfaces/IDataQualityBase.sol": {
+			"keccak256": "0x756b503c8738ca2cf66586aa50158c90f8f69d2fcf33353831ef7c9f3c096173",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://7d71229bca59018992a60ae532f04b65fb9104c07caef19fd962896e40fb2790",
+				"dweb:/ipfs/QmQBdsGNG3p3mnnSDYQ1CUKPiwntiqRG2WGmmFaAyhZVwe"
+			]
+		}
+	},
+	"version": 1
+}

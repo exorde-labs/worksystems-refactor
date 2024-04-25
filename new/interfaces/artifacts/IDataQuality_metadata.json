@@ -1,0 +1,169 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint128",
+						"name": "_DataBatchId",
+						"type": "uint128"
+					}
+				],
+				"name": "getBatchByID",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint128",
+								"name": "start_idx",
+								"type": "uint128"
+							},
+							{
+								"internalType": "uint32",
+								"name": "counter",
+								"type": "uint32"
+							},
+							{
+								"internalType": "uint32",
+								"name": "item_count",
+								"type": "uint32"
+							},
+							{
+								"internalType": "bool",
+								"name": "complete",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "allocated_to_work",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "quality_checked",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "relevance_checked",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct IDataQualityBase.BatchMetadata",
+						"name": "batch",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint128",
+						"name": "_DataId",
+						"type": "uint128"
+					}
+				],
+				"name": "getDataByID",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint64",
+								"name": "timestamp",
+								"type": "uint64"
+							},
+							{
+								"internalType": "uint64",
+								"name": "unverified_item_count",
+								"type": "uint64"
+							},
+							{
+								"internalType": "address",
+								"name": "author",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "ipfs_hash",
+								"type": "string"
+							}
+						],
+						"internalType": "struct IDataQuality.QualityData",
+						"name": "data",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"getBatchByID(uint128)": {
+					"returns": {
+						"batch": "as BatchMetadata struct"
+					}
+				},
+				"getDataByID(uint128)": {
+					"returns": {
+						"data": "as QualityData struct"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getBatchByID(uint128)": {
+					"notice": "get DataBatch By ID"
+				},
+				"getDataByID(uint128)": {
+					"notice": "get Data By ID"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"worksystems/interfaces/IDataQuality.sol": "IDataQuality"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"worksystems/interfaces/IDataQuality.sol": {
+			"keccak256": "0x6d930514f9e221cb799142aae59dc5b04fe7230507dadb65f412f653b768218b",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://7c20267cb87295d3e78516686afd4903de3d74ea0a2ba107d186ed5d3ffd034e",
+				"dweb:/ipfs/QmR6WbwqW1rZezHqeSAfuqmg4KeAfXcZQahw7Pwy9vVy5b"
+			]
+		},
+		"worksystems/interfaces/IDataQualityBase.sol": {
+			"keccak256": "0xcc64cc60fbc8998437729d20ea9400201a771edafa1ede6a0ff769522febb432",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b7740188017e0cd76bec7279fb4bb8eac4f395075131902896fa42237099d00c",
+				"dweb:/ipfs/QmeCKtJt5jWy2E8wPGRPELxnkm5DXh2pHbQDbtiGfmN4eY"
+			]
+		}
+	},
+	"version": 1
+}

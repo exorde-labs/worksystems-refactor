@@ -1,0 +1,120 @@
++---------------------+       +-----------------------+       +--------------------------+
+|                     |       |                       |       |                          |
+|   DataBatchManager  +------->   WorkAllocator      +------->  ConsensusBatchValidator |
+|                     |       |                       |       | (Batch Validation &      |
++----------+----------+       +-----------+-----------+       |   Consensus Calculation) |
+           |                                  |                |                          |
+           |                                  |                +-----------+--------------+
+           |                                  v                            |
+           |                        +---------+--------+                   |
+           |                        |                  |                   |
+           |                        |  WorkerManager   |                   |
+           |                        |                  |                   |
+           |                        +---------+--------+                   |
+           |                                  |                            |
++----------v----------+                       |                            |
+|                     |     +-----------------+----------------+           |
+|    Parameters       <-----+  External Entities (Workers)     |           |
+|                     |     +---------------------------------+            |
++---------------------+                                                    |
+                                                                           |
+                                                                           v
+                                                                +---------+--------+
+                                                                |                  |
+                                                                | Batch Validation |
+                                                                | & Consensus      |
+                                                                | Calculation      |
+                                                                |                  |
+                                                                +------------------+
+Interaction Flow (Simplified):
+Data Submission and Work Allocation remain as previously described.
+Commit-Reveal and Consensus Calculation:
+Workers commit and reveal their votes on data batches through the ConsensusBatchValidator.
+After the reveal phase, managingBatchValidator calculates the consensus and validates the batches.
+Worker Management and Parameters:
+WorkerManager and Parameters function as previously outlined, managing worker registration/unregistration, stake requirements, and governing system-wide parameters.
+This refined architecture removes the redundancy of having both a ConsensusBatchValidator and a BatchValidator, making the system more efficient and its description more coherent.
+
+DataBatchManager
+    > Responsible for handling the initial submission of data batches to the system.
+    
+    pushData(IDataSpotting.BatchMetadata memory batch_): Accepts new data batches for processing.
+
+WorkAllocator
+    > Manages the allocation of work (data batches) to available workers based on their availability and the requirements of the batches.
+
+    TriggerAllocations(uint128 iteration_count, TaskType taskType): Triggers the allocation of work to available workers.
+    AllocateWork(uint128 _DataBatchId, TaskType taskType): Allocates work to specific workers based on the type of task (Quality or Relevance).
+
+WorkerManager
+    > Handles worker registration, stake management, and the availability status of workers.
+
+    RegisterWorker(): Allows a worker to register themselves to be eligible for work allocation.
+    UnregisterWorker(): Allows a worker to unregister themselves, making them ineligible for future work allocations.
+    processLogoffRequests(uint256 n_iteration): Processes pending unregistration requests from workers.
+    SwapFromAvailableToBusyWorkers(address _worker): Marks a worker as busy, indicating they have been allocated work.
+    SwapFromBusyToAvailableWorkers(address _worker): Marks a worker as available again after completing their allocated work.
+
+ConsensusBatchValidator
+    > Core component for validating data batches through decentralized consensus among workers.
+
+    commitQualityCheck(uint128 _DataBatchId, bytes32 quality_signature_hash, string memory extra_): Allows workers to commit their encrypted vote for a quality check.
+    revealQualityCheck(uint64 _DataBatchId, uint8[] memory clearIndices_, uint8[] memory clearSubmissions_, uint128 salt_): Allows workers to reveal their votes for a quality check.
+    commitRelevanceCheck(uint128 _DataBatchId, bytes32 counts_signature_hash, bytes32 bounties_signature_hash, bytes32 duplicates_signature_hash, uint32 _BatchCount, string memory extra_): Allows workers to commit their encrypted vote for a relevance check.
+    revealRelevanceCheck(uint64 _DataBatchId, uint8[] memory base_counts_indices_, uint8[] memory base_counts_values_, uint8[] memory bounties_counts_indices_, uint8[] memory bounties_counts_values_, uint8[] memory duplicates_counts_indices_, uint8[] memory duplicates_counts_values_, uint128 salt_): Allows workers to reveal their votes for a relevance check.
+    ValidateBatch(uint128 _DataBatchId, TaskType taskType): Calculates the consensus among revealed votes and validates the batch based on the consensus.
+
+Parameters
+    > Stores and manages system-wide parameters that govern the behavior of the entire system.
+
+updateParameter(string key, uint256 value): Allows the update of system parameters such as minimum stake, work allocation timing, etc.
+These functions form the backbone of the system, enabling the submission and validation of data batches, the management of workers, and the governance of system-wide rules and parameters. Each contract's functionalities are designed to ensure the integrity of the data validation process, the fair and efficient allocation of work, and the transparent management of workers' contributions and stakes.
+
+
+
+
+----------------------------------------------------------------
+# AUTH IDEA
+
+1. WorkAllocator → WorkerManager
+Functionality: WorkAllocator needs the ability to update worker statuses (from available to busy and vice versa) based on work allocation and completion.
+Authorization Requirement: WorkAllocator should be authorized to call functions in WorkerManager that change worker states (such as SwapFromAvailableToBusyWorkers and SwapFromBusyToAvailableWorkers). This ensures that only legitimate allocations trigger changes in worker statuses.
+2. ConsensusBatchValidator → WorkerManager
+Functionality: After a worker has committed and revealed their votes on data quality or relevance, their status might need to be updated (for example, marking them as available for new work).
+Authorization Requirement: ConsensusBatchValidator must have the authority to communicate with WorkerManager to update worker statuses post-commit/reveal actions, ensuring workers are correctly managed post-validation activities.
+3. DataBatchManager, WorkAllocator, and ConsensusBatchValidator → Parameters
+Functionality: These contracts may need to read or update system-wide parameters governed by the Parameters contract.
+Authorization Requirement: While reading parameters might be public, updating system parameters should be restricted to authorized contracts or roles, such as an administrator or a governance mechanism. This prevents unauthorized modifications of critical system settings.
+Implementing Access Control
+To implement these authorizations securely, consider using role-based access control (RBAC) mechanisms, such as OpenZeppelin's Access Control contract. Here's how it can be integrated:
+
+Define roles like WORK_ALLOCATOR_ROLE, VALIDATOR_ROLE, and PARAMETERS_ADMIN_ROLE to differentiate between different types of access rights.
+When deploying the system, assign these roles to the appropriate contracts, ensuring that only contracts with the correct role can call sensitive functions.
+Use modifiers in your Solidity contracts to check for role membership before executing function logic. For example, functions in WorkerManager that should only be called by WorkAllocator could check for the WORK_ALLOCATOR_ROLE.
+Example:
+solidity
+Copy code
+// In the WorkerManager contract
+function SwapFromAvailableToBusyWorkers(address _worker) external onlyRole(WORK_ALLOCATOR_ROLE) {
+    // Function logic here
+}
+3
+
+
+You are now my Solidity software architect assistant, focused on the right interface between contracts and the functional specification only.
+
+I will provide DataQuality.sol, an old, clunky, very very large contract that was hard to maintain, (but worked, to be noted). My current endeavor is to refactor is into smaller contracts, with an interface & access control system between them.
+
+The following is a context on what is the overall use case:
+- Workers (addresses) submit data on the Quality main contract (to be written/outlined specifically)
+- They also register/unregister on WorkerManager.sol, handling workers in two pools: busy & available. This contract enable allowedContracts to swap workers from one state to another, to unregister them, etc.
+
+The workers are randomly allocated to batches of data, for 2 tasks: relevance & quality. For both, there is a commit/Reveal round, followed by a finalization step (done by the central contract), aggregating results & performing rewarding/slashing and some state upgrades.
+
+- There is a QualityCommitRevealManager.sol (that should be renamed) that is handling the submissions of workers
+
+Please consider the entirety of what was in DataQuality, and what is now missing in the new refactor (being in work progress). I need your help to accelerate my development and think of the right interfaces, the 1-2 new contracts to write and what functions should be there (list them), what interfaces should be used, if new ones have to be written, and how to organize the previously triggerAllocation, triggerUpdate, & related main validation/work allocation functions.
+
+You will also find attached the existing contracts. Assume interfaces to be correct and well-written, we can discuss these later in more detail.
+
+Do your entire analysis:

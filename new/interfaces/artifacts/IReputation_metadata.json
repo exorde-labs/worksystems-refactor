@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"worksystems/interfaces/IReputation.sol": "IReputation"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"worksystems/interfaces/IReputation.sol": {
+			"keccak256": "0x5552e17dc26c0ada525d2841c60eeea8f17343cb4c8234a803907e822cbca621",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e20ae2839ab66a65cd6bd22b0cecea1a3316c890d1e8b4c6522bf6297a6fdb0e",
+				"dweb:/ipfs/QmRCiuytDFHyyANL1dN3sHgBUbei8QBge2DXjoNSEn9k3B"
+			]
+		}
+	},
+	"version": 1
+}
